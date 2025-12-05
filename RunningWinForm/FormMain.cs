@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace RunningWinForm
 {
-    public partial class FormMain : Form
+    public partial class frmMain : Form
     {
-        public FormMain()
+        public frmMain()
         {
             InitializeComponent();
             this.Text = "Chương trình quản lý chạy bộ";
@@ -22,14 +22,14 @@ namespace RunningWinForm
         {
             foreach (Form child in this.MdiChildren)
             {
-                if (child is FormRunLog)
+                if (child is frmRunLog)
                 {
                     child.Activate();
                     return;
                 }
             }
 
-            FormRunLog runLogForm = new FormRunLog();
+            frmRunLog runLogForm = new frmRunLog();
             runLogForm.MdiParent = this;
             runLogForm.Show();
         }

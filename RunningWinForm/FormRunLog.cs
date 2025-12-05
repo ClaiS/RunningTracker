@@ -10,15 +10,14 @@ using System.Windows.Forms;
 
 namespace RunningWinForm
 {
-    public partial class FormRunLog : Form
+    public partial class frmRunLog : Form
     {
-        public FormRunLog()
+        public frmRunLog()
         {
             InitializeComponent();
             //System.Threading.Thread.CurrentThread.CurrentCulture =
                 new System.Globalization.CultureInfo("en-GB");
             this.Text = "Thông tin quản lý chạy bộ";
-            LoadSampleData();
             LoadBuoiChay();
             LoadPE();
             LoadDiaHinh();
@@ -40,11 +39,6 @@ namespace RunningWinForm
             cmbCamNhanNguoiDung.SelectedIndex = 0;
             txtHRTrungBinh.Clear();
             txtHRTrungBinh.Focus();
-        }
-
-        private void LoadSampleData()
-        {
-            dgvThongTinChayBo.Rows.Add("Long run", "01/06/2024", "35:00", "05:50", "Bằng phẳng", "9", "160");
         }
 
         private void LoadBuoiChay()

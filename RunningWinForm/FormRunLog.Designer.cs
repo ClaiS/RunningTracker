@@ -1,6 +1,6 @@
 ﻿namespace RunningWinForm
 {
-    partial class FormRunLog
+    partial class frmRunLog
     {
         /// <summary>
         /// Required designer variable.
@@ -320,7 +320,7 @@
             this.cmbPhutPace.Size = new System.Drawing.Size(69, 39);
             this.cmbPhutPace.TabIndex = 27;
             // 
-            // FormRunLog
+            // frmRunLog
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(2274, 1011);
@@ -349,8 +349,8 @@
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "FormRunLog";
-            this.Text = "FormRunLog";
+            this.Name = "frmRunLog";
+            this.Text = "Thông tin quản lý";
             ((System.ComponentModel.ISupportInitialize)(this.dgvThongTinChayBo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

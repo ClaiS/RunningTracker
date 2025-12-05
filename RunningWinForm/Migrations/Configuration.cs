@@ -14,10 +14,7 @@
 
         protected override void Seed(RunningWinForm.Data.RunningContext context)
         {
-            context.Users.AddOrUpdate(
-              u => u.Username,
-              new Models.User { Username = "admin", Password = "admin" }
-            );
+            
         }
     }
 }

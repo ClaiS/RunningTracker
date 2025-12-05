@@ -1,6 +1,6 @@
 ﻿namespace RunningWinForm
 {
-    partial class FormMain
+    partial class frmMain
     {
         /// <summary>
         /// Required designer variable.
@@ -105,7 +105,7 @@
             this.mnuBaoCaoThongKe.Size = new System.Drawing.Size(298, 44);
             this.mnuBaoCaoThongKe.Text = "Xem thống kê";
             // 
-            // FormMain
+            // frmMain
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1589, 910);
@@ -113,7 +113,7 @@
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.IsMdiContainer = true;
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.Name = "FormMain";
+            this.Name = "frmMain";
             this.Text = "Quản lý chạy bộ";
             this.menuStrip2.ResumeLayout(false);
             this.menuStrip2.PerformLayout();
