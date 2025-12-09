@@ -38,6 +38,7 @@ namespace RunningWinForm
             cmbDiaHinh.SelectedIndex = 0;
             cmbCamNhanNguoiDung.SelectedIndex = 0;
             txtHRTrungBinh.Clear();
+            txtQuangDuong.Clear();
             txtHRTrungBinh.Focus();
         }
 
@@ -103,6 +104,14 @@ namespace RunningWinForm
                 return;
             }
 
+            if (string.IsNullOrWhiteSpace(txtQuangDuong.Text))
+            {
+                MessageBox.Show("Vui lòng nhập quãng đường đã chạy!", "Thiếu thông tin",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtHRTrungBinh.Focus();
+                return;
+            }
+
             if (!int.TryParse(txtHRTrungBinh.Text, out int nhipTim) || nhipTim < 40 || nhipTim > 220)
             {
                 MessageBox.Show("Nhịp tim phải là số từ 40 đến 220!", "Dữ liệu không hợp lệ",
@@ -138,13 +147,15 @@ namespace RunningWinForm
             string diaHinh = cmbDiaHinh.SelectedItem?.ToString() ?? "";
             string camNhan = cmbCamNhanNguoiDung.SelectedItem?.ToString() ?? "";
             string nhipTimTrungBinh = txtHRTrungBinh.Text.Trim();
+            string quangDuong = txtQuangDuong.Text.Trim();
 
-            
+
 
             // 4. Thêm vào DataGridView
             dgvThongTinChayBo.Rows.Add(
                 buoiChay,
                 ngayHienThi,
+                quangDuong,
                 thoiGianChay,
                 pace,
                 diaHinh,

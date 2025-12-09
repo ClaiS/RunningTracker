@@ -77,28 +77,28 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\RunningContext.cs" />
-    <Compile Include="FormRegister.cs">
+    <Compile Include="Forms\FormRegister.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormRegister.Designer.cs">
+    <Compile Include="Forms\FormRegister.Designer.cs">
       <DependentUpon>FormRegister.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormLogin.cs">
+    <Compile Include="Forms\FormLogin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormLogin.Designer.cs">
+    <Compile Include="Forms\FormLogin.Designer.cs">
       <DependentUpon>FormLogin.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormMain.cs">
+    <Compile Include="Forms\FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormMain.Designer.cs">
+    <Compile Include="Forms\FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormRunLog.cs">
+    <Compile Include="Forms\FormRunLog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormRunLog.Designer.cs">
+    <Compile Include="Forms\FormRunLog.Designer.cs">
       <DependentUpon>FormRunLog.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\202512020646272_InitialCreate.cs" />
@@ -122,16 +122,17 @@
     <Compile Include="Models\YearlySummary.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="FormRegister.resx">
+    <Compile Include="Services\AccountServices.cs" />
+    <EmbeddedResource Include="Forms\FormRegister.resx">
       <DependentUpon>FormRegister.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormLogin.resx">
+    <EmbeddedResource Include="Forms\FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormMain.resx">
+    <EmbeddedResource Include="Forms\FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormRunLog.resx">
+    <EmbeddedResource Include="Forms\FormRunLog.resx">
       <DependentUpon>FormRunLog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202512020646272_InitialCreate.resx">
@@ -167,6 +168,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
