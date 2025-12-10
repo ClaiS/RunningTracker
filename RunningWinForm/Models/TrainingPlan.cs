@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace RunningWinForm.Models
 {
-    internal class TrainingPlan
+    public class TrainingPlan
     {
         [Key]
         public int PlanID { get; set; }

@@ -8,11 +8,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using RunningWinForm.Data.Repositories;
 
 namespace RunningWinForm
 {
     public partial class frmLogin : Form
     {
+        private readonly UserRepository _userRepository;
+
+        public frmLogin(UserRepository userRepository)
+        {
+            _userRepository = userRepository;
+            InitializeComponent();
+        }
         public frmLogin()
         {
             InitializeComponent();
@@ -20,32 +28,10 @@ namespace RunningWinForm
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            //string username = txtUsername.Text.Trim();
-            //string password = txtPassword.Text;
-
-            //if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
-            //{
-            //    MessageBox.Show("Vui lòng nhập đủ thông tin!");
-            //    return;
-            //}
-
-            //using (var context = new RunningContext())
-            //{
-            //    var user = context.Users
-            //        .FirstOrDefault(u => u.Username == username && u.Password == password);
-
-            //    if (user != null)
-            //    {
-            //        // Lưu thông tin người dùng đang đăng nhập
-            //        Global.CurrentUser = user;
-            //        this.DialogResult = DialogResult.OK;
-            //        this.Close();
-            //    }
-            //    else
-            //    {
-            //        MessageBox.Show("Sai tên đăng nhập hoặc mật khẩu!");
-            //    }
-            //}
+            String username = txtUsername.Text;
+            String password = txtPassword.Text;
+            
+            var user = 
         }
     }
 }

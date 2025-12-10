@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace RunningWinForm.Models
 {
-    internal class User
+    public class User
     {
         [Key]
         public int UserID { get; set; }

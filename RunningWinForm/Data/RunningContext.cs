@@ -8,7 +8,7 @@ using RunningWinForm.Models;
 
 namespace RunningWinForm.Data
 {
-    internal class RunningContext : DbContext
+    public class RunningContext : DbContext
     {
         public RunningContext() : base("name=RunningTrackerDB")
         {

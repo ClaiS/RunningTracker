@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace RunningWinForm.Models
 {
-    internal class MonthlySummary
+    public class MonthlySummary
     {
         [Key]
         public int SummaryID { get; set; }

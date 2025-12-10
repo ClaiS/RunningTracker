@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace RunningWinForm.Models
 {
-    internal class RunSession
+    public class RunSession
     {
         [Key]
         public int RunID { get; set; }
