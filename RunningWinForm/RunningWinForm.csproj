@@ -76,6 +76,7 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\Repositories\UserRepository.cs" />
     <Compile Include="Data\RunningContext.cs" />
     <Compile Include="Forms\FormRegister.cs">
       <SubType>Form</SubType>
