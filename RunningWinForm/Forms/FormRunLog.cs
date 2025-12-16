@@ -1,7 +1,11 @@
-﻿using System;
+﻿using RunningWinForm.Data;
+using RunningWinForm.Models;
+using RunningWinForm.Services;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -12,24 +16,33 @@ namespace RunningWinForm
 {
     public partial class frmRunLog : Form
     {
+        private readonly User _currentUser;
+        private List<RunSession> _runSessions;
+
+        public frmRunLog(User currentUser)
+        {
+            _currentUser = currentUser;
+            InitializeComponent();
+            LoadData();
+            LoadPE();
+            LoadThoiGianChay();
+            LoadPaceTrungBinh();
+            ClearInput();
+        }
         public frmRunLog()
         {
             InitializeComponent();
             //System.Threading.Thread.CurrentThread.CurrentCulture =
                 new System.Globalization.CultureInfo("en-GB");
-            this.Text = "Thông tin quản lý chạy bộ";
-            LoadBuoiChay();
             LoadPE();
-            LoadDiaHinh();
             LoadThoiGianChay();
             LoadPaceTrungBinh();
             ClearInput();
         }
-
         private void ClearInput()
         {
-            dtpNgayChay.Value = DateTime.Today;
             cmbBuoiChay.SelectedIndex = 0;
+            dtpNgayChay.Value = DateTime.Today;
             cmbGioThoiGian.SelectedIndex = 0;
             cmbPhutThoiGian.SelectedIndex = 30;
             cmbGiayThoiGian.SelectedIndex = 0;
@@ -41,24 +54,11 @@ namespace RunningWinForm
             txtQuangDuong.Clear();
             txtHRTrungBinh.Focus();
         }
-
-        private void LoadBuoiChay()
-        {
-            cmbBuoiChay.Items.AddRange(new string[] { "Easy", "Tempo", "Interval", "Long" });
-            cmbBuoiChay.SelectedIndex = 0;
-        }
-
         private void LoadPE()
         {
             for (int i = 1; i <= 10; i++)
                 cmbCamNhanNguoiDung.Items.Add(i);
             cmbCamNhanNguoiDung.SelectedIndex = 0;
-        }
-
-        private void LoadDiaHinh()
-        {
-            cmbDiaHinh.Items.AddRange(new string[] { "Bằng phẳng", "Đường núi", "Đường dốc" });
-            cmbDiaHinh.SelectedIndex = 0;
         }
 
         private void LoadThoiGianChay()
@@ -128,50 +128,92 @@ namespace RunningWinForm
                 return;
             }
 
-            string buoiChay = cmbBuoiChay.SelectedItem?.ToString() ?? "";
-            DateTime ngayChay = dtpNgayChay.Value;
-            // 3. Định dạng ngày theo dd/MM/yyyy
-            string ngayHienThi = ngayChay.ToString("dd/MM/yyyy");
+            int durationSeconds =
+                int.Parse(cmbGioThoiGian.SelectedItem.ToString()) * 3600 +
+                int.Parse(cmbPhutThoiGian.SelectedItem.ToString()) * 60 +
+                int.Parse(cmbGiayThoiGian.SelectedItem.ToString());
 
-            // Thời gian chạy: hh:mm:ss
-            string gio = cmbGioThoiGian.SelectedItem?.ToString() ?? "00";
-            string phut = cmbPhutThoiGian.SelectedItem?.ToString() ?? "00";
-            string giay = cmbGiayThoiGian.SelectedItem?.ToString() ?? "00";
-            string thoiGianChay = $"{gio}:{phut}:{giay}";
-
-            // Pace: mm:ss
-            string phutPace = cmbPhutPace.SelectedItem?.ToString() ?? "00";
-            string giayPace = cmbGiayPace.SelectedItem?.ToString() ?? "00";
-            string pace = $"{phutPace}:{giayPace}";
-
-            string diaHinh = cmbDiaHinh.SelectedItem?.ToString() ?? "";
-            string camNhan = cmbCamNhanNguoiDung.SelectedItem?.ToString() ?? "";
-            string nhipTimTrungBinh = txtHRTrungBinh.Text.Trim();
-            string quangDuong = txtQuangDuong.Text.Trim();
+            int paceSeconds =
+                int.Parse(cmbPhutPace.SelectedItem.ToString()) * 60 +
+                int.Parse(cmbGiayPace.SelectedItem.ToString());
 
 
+            var session = new RunSession
+            {
+                UserID = _currentUser.UserID,
+                RunType = cmbBuoiChay.SelectedItem.ToString(),
+                RunDate = dtpNgayChay.Value.Date,
+                Duration = durationSeconds,
+                Pace = paceSeconds,
+                Terrain = cmbDiaHinh.SelectedItem.ToString(),
+                RPE = int.Parse(cmbCamNhanNguoiDung.SelectedItem.ToString()),
+                AvgHR = nhipTim,
+                Distance = decimal.Parse(txtQuangDuong.Text)
+            };
 
-            // 4. Thêm vào DataGridView
-            dgvThongTinChayBo.Rows.Add(
-                buoiChay,
-                ngayHienThi,
-                quangDuong,
-                thoiGianChay,
-                pace,
-                diaHinh,
-                camNhan,
-                nhipTimTrungBinh.ToString()
-            );
+            try
+            {
+                using (var context = new RunningContext())
+                {
+                    context.RunSessions.Add(session);
+                    context.SaveChanges();
+                }
+                LoadData();
 
-            MessageBox.Show("Thêm buổi chạy thành công!", "Thông báo",
-                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Thêm buổi chạy thành công!", "Thông báo",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-            ClearInput();
+                ClearInput();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi khi lưu: {ex.Message}", "Lỗi",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public void LoadData()
+        {
+            using (var context = new RunningContext()) 
+            {                 
+                _runSessions = context.RunSessions
+                    .Where(s => s.UserID == _currentUser.UserID)
+                    .Include(r => r.User)
+                    .ToList();
+            }
+            ToGrid(_runSessions);     
+        }
+
+        private void ToGrid(List<RunSession> runSessions)
+        {
+            dgvThongTinChayBo.Rows.Clear();
+            foreach (var session in runSessions)
+            {
+                string ngay = session.RunDate.ToString("dd/MM/yyyy");
+                string duration = TimeFormat.FormatDuration((int)session.Duration);
+                string pace = TimeFormat.FormatPace((int)session.Pace);
+
+                dgvThongTinChayBo.Rows.Add(
+                    session.RunType,
+                    ngay,
+                    session.Distance.ToString("F1"),
+                    duration,
+                    pace,
+                    session.Terrain,
+                    session.RPE.ToString(),
+                    session.AvgHR.ToString()
+                );
+            }
         }
 
         private void btnSua_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnHuy_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

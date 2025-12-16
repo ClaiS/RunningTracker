@@ -7,13 +7,13 @@ namespace RunningWinForm.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.5.1")]
-    public sealed partial class RemoveHeartRateZoneDetail : IMigrationMetadata
+    public sealed partial class AddUser2InSeed : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(RemoveHeartRateZoneDetail));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddUser2InSeed));
         
         string IMigrationMetadata.Id
         {
-            get { return "202512040140482_RemoveHeartRateZoneDetail"; }
+            get { return "202512160234048_AddUser2InSeed"; }
         }
         
         string IMigrationMetadata.Source

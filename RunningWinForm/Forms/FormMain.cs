@@ -1,4 +1,4 @@
-﻿using System;
+﻿    using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,15 +7,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using RunningWinForm.Models;
 
 namespace RunningWinForm
 {
     public partial class frmMain : Form
     {
+        private readonly User _currentUser;
         public frmMain()
         {
             InitializeComponent();
             this.Text = "Chương trình quản lý chạy bộ";
+        }
+
+        public frmMain(User currentUser)
+        {
+            InitializeComponent();
+            _currentUser = currentUser;
         }
 
         private void mnuQuanLyChayBo_Click(object sender, EventArgs e)
@@ -29,7 +37,7 @@ namespace RunningWinForm
                 }
             }
 
-            frmRunLog runLogForm = new frmRunLog();
+            var runLogForm = new frmRunLog(_currentUser);
             runLogForm.MdiParent = this;
             runLogForm.Show();
         }

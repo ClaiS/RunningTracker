@@ -1,4 +1,5 @@
 ﻿using RunningWinForm.Models;
+using RunningWinForm.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,10 +17,10 @@ namespace RunningWinForm.Data.Repositories
             _context = context;
         }
 
-        public User GetUserAndPassword(string username, string password)
+        public User GetUser(string username)
         {
             return _context.Users
-                .FirstOrDefault(u => u.Username == username && u.Password == password);
+                .FirstOrDefault(u => u.Username == username);
         }
     }
 }

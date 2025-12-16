@@ -3,16 +3,16 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class AddRoleToUser : DbMigration
+    public partial class AddPaceAndDuration : DbMigration
     {
         public override void Up()
         {
-            AddColumn("dbo.Users", "Role", c => c.String(nullable: false, maxLength: 20));
+            AddColumn("dbo.RunSessions", "Pace", c => c.Decimal(nullable: false, precision: 18, scale: 2));
         }
         
         public override void Down()
         {
-            DropColumn("dbo.Users", "Role");
+            DropColumn("dbo.RunSessions", "Pace");
         }
     }
 }

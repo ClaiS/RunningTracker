@@ -7,13 +7,13 @@ namespace RunningWinForm.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.5.1")]
-    public sealed partial class InitialCreate : IMigrationMetadata
+    public sealed partial class AddSeed : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialCreate));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddSeed));
         
         string IMigrationMetadata.Id
         {
-            get { return "202512020646272_InitialCreate"; }
+            get { return "202512120357534_AddSeed"; }
         }
         
         string IMigrationMetadata.Source

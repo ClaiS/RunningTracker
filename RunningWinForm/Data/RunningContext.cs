@@ -17,6 +17,8 @@ namespace RunningWinForm.Data
 
         // DbSet cho các bảng trong cơ sở dữ liệu
         public DbSet<User> Users { get; set; }
+        public DbSet<Role> Roles { get; set; }
+        public DbSet<UserRole> UserRoles { get; set; }
         public DbSet<RunSession> RunSessions { get; set; }
         public DbSet<MonthlySummary> MonthlySummaries { get; set; }
         public DbSet<WeeklySummary> WeeklySummaries { get; set; }
@@ -28,6 +30,19 @@ namespace RunningWinForm.Data
             //Thiêt lập quan hệ các bảng
              
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<UserRole>()
+                .HasKey(ur => new { ur.UserID, ur.RoleID });
+
+            modelBuilder.Entity<UserRole>()
+                .HasRequired(ur => ur.User)
+                .WithMany(u => u.UserRoles)
+                .HasForeignKey(ur => ur.UserID);
+
+            modelBuilder.Entity<UserRole>()
+                .HasRequired(ur => ur.Role)
+                .WithMany(r => r.UserRoles)
+                .HasForeignKey(ur => ur.RoleID);
 
             modelBuilder.Entity<RunSession>()
                 .HasRequired(rs => rs.User)

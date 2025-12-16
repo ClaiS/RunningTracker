@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace RunningWinForm.Services
 {
-    internal class AccountServices
+    public class AccountServices
     {
         private readonly UserRepository _userRepository;
 
@@ -20,24 +20,20 @@ namespace RunningWinForm.Services
 
         public User Login(string username, string password)
         {
-            // Kiểm tra Input
-            if(string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
+            User user = _userRepository.GetUser(username);
+
+            // Xử lý kết quả
+
+            if(user == null)
             {
                 return null;
             }
-            
-            User user = _userRepository.GetUserAndPassword(username, password);
 
-            // Xử lý kết quả
-            
-            if(user != null)
+            if (PasswordHelper.VerifyPassword(password, user.Password))
             {
                 return user;
             }
-            else
-            {
-                return null;
-            }
+            return null;
         }
     }
 }

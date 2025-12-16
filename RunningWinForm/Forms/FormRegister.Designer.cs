@@ -36,13 +36,17 @@
             this.lblRegisterTitle = new System.Windows.Forms.Label();
             this.txtComfirmPass = new System.Windows.Forms.TextBox();
             this.lblComfirmPass = new System.Windows.Forms.Label();
+            this.txtMail = new System.Windows.Forms.TextBox();
+            this.txtHoTen = new System.Windows.Forms.TextBox();
+            this.lblMail = new System.Windows.Forms.Label();
+            this.lblHoTen = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblUsername
             // 
             this.lblUsername.AutoSize = true;
             this.lblUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUsername.Location = new System.Drawing.Point(158, 134);
+            this.lblUsername.Location = new System.Drawing.Point(158, 332);
             this.lblUsername.Name = "lblUsername";
             this.lblUsername.Size = new System.Drawing.Size(203, 31);
             this.lblUsername.TabIndex = 1;
@@ -52,7 +56,7 @@
             // 
             this.lblPassword.AutoSize = true;
             this.lblPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPassword.Location = new System.Drawing.Point(188, 244);
+            this.lblPassword.Location = new System.Drawing.Point(188, 442);
             this.lblPassword.Name = "lblPassword";
             this.lblPassword.Size = new System.Drawing.Size(133, 31);
             this.lblPassword.TabIndex = 2;
@@ -61,7 +65,7 @@
             // txtUsername
             // 
             this.txtUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUsername.Location = new System.Drawing.Point(426, 134);
+            this.txtUsername.Location = new System.Drawing.Point(426, 332);
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(250, 38);
             this.txtUsername.TabIndex = 3;
@@ -69,7 +73,7 @@
             // txtPassword
             // 
             this.txtPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPassword.Location = new System.Drawing.Point(426, 244);
+            this.txtPassword.Location = new System.Drawing.Point(426, 442);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(250, 38);
             this.txtPassword.TabIndex = 4;
@@ -77,7 +81,7 @@
             // btnRegister
             // 
             this.btnRegister.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRegister.Location = new System.Drawing.Point(267, 449);
+            this.btnRegister.Location = new System.Drawing.Point(267, 647);
             this.btnRegister.Name = "btnRegister";
             this.btnRegister.Size = new System.Drawing.Size(295, 57);
             this.btnRegister.TabIndex = 6;
@@ -97,7 +101,7 @@
             // txtComfirmPass
             // 
             this.txtComfirmPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtComfirmPass.Location = new System.Drawing.Point(426, 350);
+            this.txtComfirmPass.Location = new System.Drawing.Point(426, 548);
             this.txtComfirmPass.Name = "txtComfirmPass";
             this.txtComfirmPass.Size = new System.Drawing.Size(250, 38);
             this.txtComfirmPass.TabIndex = 8;
@@ -106,17 +110,57 @@
             // 
             this.lblComfirmPass.AutoSize = true;
             this.lblComfirmPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblComfirmPass.Location = new System.Drawing.Point(140, 357);
+            this.lblComfirmPass.Location = new System.Drawing.Point(140, 555);
             this.lblComfirmPass.Name = "lblComfirmPass";
             this.lblComfirmPass.Size = new System.Drawing.Size(239, 31);
             this.lblComfirmPass.TabIndex = 7;
             this.lblComfirmPass.Text = "Nhập lại mật khẩu:";
             // 
+            // txtMail
+            // 
+            this.txtMail.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMail.Location = new System.Drawing.Point(426, 223);
+            this.txtMail.Name = "txtMail";
+            this.txtMail.Size = new System.Drawing.Size(250, 38);
+            this.txtMail.TabIndex = 12;
+            // 
+            // txtHoTen
+            // 
+            this.txtHoTen.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtHoTen.Location = new System.Drawing.Point(426, 113);
+            this.txtHoTen.Name = "txtHoTen";
+            this.txtHoTen.Size = new System.Drawing.Size(250, 38);
+            this.txtHoTen.TabIndex = 11;
+            // 
+            // lblMail
+            // 
+            this.lblMail.AutoSize = true;
+            this.lblMail.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMail.Location = new System.Drawing.Point(204, 226);
+            this.lblMail.Name = "lblMail";
+            this.lblMail.Size = new System.Drawing.Size(89, 31);
+            this.lblMail.TabIndex = 10;
+            this.lblMail.Text = "Email:";
+            // 
+            // lblHoTen
+            // 
+            this.lblHoTen.AutoSize = true;
+            this.lblHoTen.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHoTen.Location = new System.Drawing.Point(204, 116);
+            this.lblHoTen.Name = "lblHoTen";
+            this.lblHoTen.Size = new System.Drawing.Size(102, 31);
+            this.lblHoTen.TabIndex = 9;
+            this.lblHoTen.Text = "Họ tên:";
+            // 
             // frmRegister
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(854, 568);
+            this.ClientSize = new System.Drawing.Size(854, 748);
+            this.Controls.Add(this.txtMail);
+            this.Controls.Add(this.txtHoTen);
+            this.Controls.Add(this.lblMail);
+            this.Controls.Add(this.lblHoTen);
             this.Controls.Add(this.txtComfirmPass);
             this.Controls.Add(this.lblComfirmPass);
             this.Controls.Add(this.btnRegister);
@@ -141,5 +185,9 @@
         private System.Windows.Forms.Label lblRegisterTitle;
         private System.Windows.Forms.TextBox txtComfirmPass;
         private System.Windows.Forms.Label lblComfirmPass;
+        private System.Windows.Forms.TextBox txtMail;
+        private System.Windows.Forms.TextBox txtHoTen;
+        private System.Windows.Forms.Label lblMail;
+        private System.Windows.Forms.Label lblHoTen;
     }
 }

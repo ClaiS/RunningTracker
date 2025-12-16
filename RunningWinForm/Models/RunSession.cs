@@ -22,7 +22,10 @@ namespace RunningWinForm.Models
         public decimal Distance { get; set; } // km
 
         [Required]
-        public decimal Duration { get; set; } // minutes
+        public decimal Duration { get; set; }
+
+        [Required]
+        public decimal Pace { get; set; } // minutes
 
         [Required]
         public int RPE { get; set; } // Rate of Perceived Exertion

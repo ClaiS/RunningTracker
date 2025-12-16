@@ -12,14 +12,17 @@ namespace RunningWinForm.Models
         [Key]
         public int UserID { get; set; }
 
+        [Required, StringLength(100)]
+        public string FullName { get; set; }
+
+        [Required, StringLength(100)]
+        public string Email { get; set; }
+
         [Required, StringLength(50)]
         public string Username { get; set; }
 
-        [Required, StringLength(100)]
+        [Required, StringLength(256)]
         public string Password { get; set; }
-
-        [Required, StringLength(20)]
-        public string Role { get; set; } // "Admin" hoặc "User"
 
         //navigation property
         public virtual ICollection<RunSession> RunSessions { get; set; }
@@ -31,5 +34,8 @@ namespace RunningWinForm.Models
         public virtual ICollection<YearlySummary> YearlySummaries { get; set; }
 
         public virtual ICollection<WeeklySummary> WeeklySummaries { get; set; }
+
+        public virtual ICollection<UserRole> UserRoles { get; set; }
+        
     }
 }

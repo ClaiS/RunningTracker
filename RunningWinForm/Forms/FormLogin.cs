@@ -1,26 +1,29 @@
 ﻿using RunningWinForm.Data;
+using RunningWinForm.Data.Repositories;
+using RunningWinForm.Models;
+using RunningWinForm.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using RunningWinForm.Data.Repositories;
 using System.Windows.Media.Media3D;
-using RunningWinForm.Models;
+using System.Data.Entity;
 
 namespace RunningWinForm
 {
     public partial class frmLogin : Form
     {
-        private readonly UserRepository _userRepository;
+        private readonly AccountServices _accountServices;
 
-        public frmLogin(UserRepository userRepository)
+        public frmLogin(AccountServices accountServices)
         {
-            _userRepository = userRepository;
+            _accountServices = accountServices;
             InitializeComponent();
         }
         public frmLogin()
@@ -35,6 +38,8 @@ namespace RunningWinForm
             String username = txtUsername.Text;
             String password = txtPassword.Text;
 
+
+
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
                 MessageBox.Show("Vui lòng nhập đủ thông tin!", "Lỗi",
@@ -42,9 +47,9 @@ namespace RunningWinForm
                 return;
             }
 
-            var user = _userRepository.GetUserAndPassword(username, password);
+            var user = _accountServices.Login(username, password);
 
-            if(user == null)
+            if (user == null)
             {
                 MessageBox.Show("Sai tên đăng nhập hoặc mật khẩu!", "Lỗi",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -53,7 +58,7 @@ namespace RunningWinForm
             else
             {
                 LoggedInUser = user;
-                MessageBox.Show("Đăng nhập thành công!", "Thông báo",
+                MessageBox.Show($"Chào mừng {LoggedInUser.FullName}!", "Thông báo",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.DialogResult = DialogResult.OK;
                 this.Close();

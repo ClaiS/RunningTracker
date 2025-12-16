@@ -7,13 +7,13 @@ namespace RunningWinForm.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.5.1")]
-    public sealed partial class AddRoleToUser : IMigrationMetadata
+    public sealed partial class AddPaceAndDuration : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddRoleToUser));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddPaceAndDuration));
         
         string IMigrationMetadata.Id
         {
-            get { return "202512050146526_AddRoleToUser"; }
+            get { return "202512160454159_AddPaceAndDuration"; }
         }
         
         string IMigrationMetadata.Source
