@@ -12,17 +12,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using RunningWinForm.Data.Repositories;
 
 namespace RunningWinForm
 {
     public partial class frmRunLog : Form
     {
         private readonly User _currentUser;
+        private readonly RunSessionServices _runSessionServices;
         private List<RunSession> _runSessions;
 
         public frmRunLog(User currentUser)
         {
+            var context = new RunningContext();
+            var runRepo = new RunRepository(context);
+            var userRepo = new UserRepository(context);
             _currentUser = currentUser;
+            _runSessionServices = new RunSessionServices(runRepo, userRepo);
             InitializeComponent();
             LoadData();
             LoadPE();
@@ -30,16 +36,7 @@ namespace RunningWinForm
             LoadPaceTrungBinh();
             ClearInput();
         }
-        public frmRunLog()
-        {
-            InitializeComponent();
-            //System.Threading.Thread.CurrentThread.CurrentCulture =
-                new System.Globalization.CultureInfo("en-GB");
-            LoadPE();
-            LoadThoiGianChay();
-            LoadPaceTrungBinh();
-            ClearInput();
-        }
+        
         private void ClearInput()
         {
             cmbBuoiChay.SelectedIndex = 0;
@@ -95,94 +92,76 @@ namespace RunningWinForm
 
         private void btnThem_Click(object sender, EventArgs e)
         {
-            // Kiểm tra dữ liệu nhập phải đầy đủ
-
-            if (string.IsNullOrWhiteSpace(txtHRTrungBinh.Text))
-            {
-                MessageBox.Show("Vui lòng nhập nhịp tim trung bình!", "Thiếu thông tin",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtHRTrungBinh.Focus();
-                return;
-            }
-
-            if (string.IsNullOrWhiteSpace(txtQuangDuong.Text))
-            {
-                MessageBox.Show("Vui lòng nhập quãng đường đã chạy!", "Thiếu thông tin",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtHRTrungBinh.Focus();
-                return;
-            }
-
-            if (!int.TryParse(txtHRTrungBinh.Text, out int nhipTim) || nhipTim < 40 || nhipTim > 220)
-            {
-                MessageBox.Show("Nhịp tim phải là số từ 40 đến 220!", "Dữ liệu không hợp lệ",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtHRTrungBinh.Focus();
-                return;
-            }
-
-            // Kiểm tra ngày chạy không vượt quá hôm nay
-            if (dtpNgayChay.Value.Date > DateTime.Today)
-            {
-                MessageBox.Show("Ngày chạy không được lớn hơn ngày hiện tại!", "Lỗi ngày",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            int durationSeconds =
-                int.Parse(cmbGioThoiGian.SelectedItem.ToString()) * 3600 +
-                int.Parse(cmbPhutThoiGian.SelectedItem.ToString()) * 60 +
-                int.Parse(cmbGiayThoiGian.SelectedItem.ToString());
-
-            int paceSeconds =
-                int.Parse(cmbPhutPace.SelectedItem.ToString()) * 60 +
-                int.Parse(cmbGiayPace.SelectedItem.ToString());
-
-
-            var session = new RunSession
-            {
-                UserID = _currentUser.UserID,
-                RunType = cmbBuoiChay.SelectedItem.ToString(),
-                RunDate = dtpNgayChay.Value.Date,
-                Duration = durationSeconds,
-                Pace = paceSeconds,
-                Terrain = cmbDiaHinh.SelectedItem.ToString(),
-                RPE = int.Parse(cmbCamNhanNguoiDung.SelectedItem.ToString()),
-                AvgHR = nhipTim,
-                Distance = decimal.Parse(txtQuangDuong.Text)
-            };
-
             try
             {
-                using (var context = new RunningContext())
+                if (string.IsNullOrWhiteSpace(txtHRTrungBinh.Text) || string.IsNullOrWhiteSpace(txtQuangDuong.Text))
                 {
-                    context.RunSessions.Add(session);
-                    context.SaveChanges();
+                    MessageBox.Show("Vui lòng nhập nhịp tim trung bình!", "Thiếu thông tin",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
                 }
+
+                if (!int.TryParse(txtHRTrungBinh.Text, out int nhipTim))
+                {
+                    MessageBox.Show("Nhịp tim phải là số!", "Lỗi định dạng", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if (!decimal.TryParse(txtQuangDuong.Text, out decimal quangDuong))
+                {
+                    MessageBox.Show("Quãng đường phải là số!", "Lỗi định dạng", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                int durationSeconds =
+                    int.Parse(cmbGioThoiGian.SelectedItem.ToString()) * 3600 +
+                    int.Parse(cmbPhutThoiGian.SelectedItem.ToString()) * 60 +
+                    int.Parse(cmbGiayThoiGian.SelectedItem.ToString());
+
+                int paceSeconds =
+                    int.Parse(cmbPhutPace.SelectedItem.ToString()) * 60 +
+                    int.Parse(cmbGiayPace.SelectedItem.ToString());
+
+
+                var session = new RunSession
+                {
+                    UserID = _currentUser.UserID,
+                    RunType = cmbBuoiChay.SelectedItem.ToString(),
+                    RunDate = dtpNgayChay.Value.Date,
+                    Duration = durationSeconds,
+                    Pace = paceSeconds,
+                    Terrain = cmbDiaHinh.SelectedItem.ToString(),
+                    RPE = int.Parse(cmbCamNhanNguoiDung.SelectedItem.ToString()),
+                    AvgHR = nhipTim,
+                    Distance = quangDuong
+                };
+
+                _runSessionServices.AddRunSession(session);
+                MessageBox.Show("Thêm thành công!");
                 LoadData();
-
-                MessageBox.Show("Thêm buổi chạy thành công!", "Thông báo",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                ClearInput();
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message, "Lỗi dữ liệu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Lỗi khi lưu: {ex.Message}", "Lỗi",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Lỗi hệ thống: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            
         }
 
         public void LoadData()
         {
-            using (var context = new RunningContext()) 
-            {                 
-                _runSessions = context.RunSessions
-                    .Where(s => s.UserID == _currentUser.UserID)
-                    .Include(r => r.User)
-                    .ToList();
+            try
+            {
+                _runSessions = _runSessionServices.GetUserRuns(_currentUser.UserID);
+                ToGrid(_runSessions);
+            }    
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi hệ thống: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            ToGrid(_runSessions);     
         }
 
         private void ToGrid(List<RunSession> runSessions)
@@ -234,6 +213,11 @@ namespace RunningWinForm
                 TimeFormat.RedoTime(selectedSession.Cells["ColThoiGian"].Value?.ToString(), cmbGioThoiGian, cmbPhutThoiGian, cmbGiayThoiGian);
                 TimeFormat.RedoTime(selectedSession.Cells["ColPaceTB"].Value?.ToString(), null, cmbPhutPace, cmbGiayPace);
             }
+        }
+
+        private void frmRunLog_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

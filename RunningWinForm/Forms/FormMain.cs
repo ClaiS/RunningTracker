@@ -51,5 +51,21 @@ namespace RunningWinForm
         {
             this.Close();
         }
+
+        private void mnuTimKiem_Click(object sender, EventArgs e)
+        {
+            foreach (Form child in this.MdiChildren)
+            {
+                if (child is frmSearch)
+                {
+                    child.Activate();
+                    return;
+                }
+            }
+
+            var searchForm = new frmSearch(_currentUser);
+            searchForm.MdiParent = this;
+            searchForm.Show();
+        }
     }
 }

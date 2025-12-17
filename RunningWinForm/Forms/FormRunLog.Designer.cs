@@ -401,6 +401,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmRunLog";
             this.Text = "Thông tin quản lý chạy bộ";
+            this.Load += new System.EventHandler(this.frmRunLog_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvThongTinChayBo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
