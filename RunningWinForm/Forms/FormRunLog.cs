@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -194,6 +195,7 @@ namespace RunningWinForm
                 string pace = TimeFormat.FormatPace((int)session.Pace);
 
                 dgvThongTinChayBo.Rows.Add(
+                    session.RunID,
                     session.RunType,
                     ngay,
                     session.Distance.ToString("F1"),
@@ -214,6 +216,24 @@ namespace RunningWinForm
         private void btnHuy_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void dgvThongTinChayBo_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex == -1) return;
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow selectedSession = dgvThongTinChayBo.Rows[e.RowIndex];
+                cmbBuoiChay.Text = selectedSession.Cells["colBuoiChay"].Value.ToString();
+                dtpNgayChay.Value = DateTime.ParseExact(selectedSession.Cells["colNgayChay"].Value.ToString(), "dd/MM/yyyy", null);
+                txtQuangDuong.Text = selectedSession.Cells["colQuangDuong"].Value.ToString();
+                cmbDiaHinh.SelectedItem = selectedSession.Cells["ColDiaHinh"].Value.ToString();
+                cmbCamNhanNguoiDung.SelectedItem = selectedSession.Cells["ColCamNhanNguoiDung"].Value.ToString();
+                txtHRTrungBinh.Text = selectedSession.Cells["ColHRTrungBinh"].Value.ToString();
+
+                TimeFormat.RedoTime(selectedSession.Cells["ColThoiGian"].Value?.ToString(), cmbGioThoiGian, cmbPhutThoiGian, cmbGiayThoiGian);
+                TimeFormat.RedoTime(selectedSession.Cells["ColPaceTB"].Value?.ToString(), null, cmbPhutPace, cmbGiayPace);
+            }
         }
     }
 }

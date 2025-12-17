@@ -40,6 +40,15 @@
             this.cmbCamNhanNguoiDung = new System.Windows.Forms.ComboBox();
             this.cmbDiaHinh = new System.Windows.Forms.ComboBox();
             this.dgvThongTinChayBo = new System.Windows.Forms.DataGridView();
+            this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colBuoiChay = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColNgayChay = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colQuangDuong = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColThoiGian = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColPaceTB = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColDiaHinh = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColCamNhanNguoiDung = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColHRTrungBinh = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnThem = new System.Windows.Forms.Button();
             this.btnSua = new System.Windows.Forms.Button();
             this.btnXoa = new System.Windows.Forms.Button();
@@ -53,15 +62,6 @@
             this.cmbPhutPace = new System.Windows.Forms.ComboBox();
             this.txtQuangDuong = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colBuoiChay = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColNgayChay = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colQuangDuong = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColThoiGian = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColPaceTB = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColDiaHinh = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColCamNhanNguoiDung = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColHRTrungBinh = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvThongTinChayBo)).BeginInit();
             this.SuspendLayout();
             // 
@@ -199,6 +199,62 @@
             this.dgvThongTinChayBo.RowTemplate.Height = 33;
             this.dgvThongTinChayBo.Size = new System.Drawing.Size(1603, 765);
             this.dgvThongTinChayBo.TabIndex = 17;
+            this.dgvThongTinChayBo.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvThongTinChayBo_CellClick);
+            // 
+            // colID
+            // 
+            this.colID.HeaderText = "ID";
+            this.colID.MinimumWidth = 10;
+            this.colID.Name = "colID";
+            this.colID.Visible = false;
+            // 
+            // colBuoiChay
+            // 
+            this.colBuoiChay.HeaderText = "Buổi chạy";
+            this.colBuoiChay.MinimumWidth = 10;
+            this.colBuoiChay.Name = "colBuoiChay";
+            // 
+            // ColNgayChay
+            // 
+            this.ColNgayChay.HeaderText = "Ngày chạy";
+            this.ColNgayChay.MinimumWidth = 10;
+            this.ColNgayChay.Name = "ColNgayChay";
+            // 
+            // colQuangDuong
+            // 
+            this.colQuangDuong.HeaderText = "Quãng đường";
+            this.colQuangDuong.MinimumWidth = 10;
+            this.colQuangDuong.Name = "colQuangDuong";
+            // 
+            // ColThoiGian
+            // 
+            this.ColThoiGian.HeaderText = "Thòi gian";
+            this.ColThoiGian.MinimumWidth = 10;
+            this.ColThoiGian.Name = "ColThoiGian";
+            // 
+            // ColPaceTB
+            // 
+            this.ColPaceTB.HeaderText = "Pace trung bình";
+            this.ColPaceTB.MinimumWidth = 10;
+            this.ColPaceTB.Name = "ColPaceTB";
+            // 
+            // ColDiaHinh
+            // 
+            this.ColDiaHinh.HeaderText = "Địa hình";
+            this.ColDiaHinh.MinimumWidth = 10;
+            this.ColDiaHinh.Name = "ColDiaHinh";
+            // 
+            // ColCamNhanNguoiDung
+            // 
+            this.ColCamNhanNguoiDung.HeaderText = "Cảm nhận người dùng";
+            this.ColCamNhanNguoiDung.MinimumWidth = 10;
+            this.ColCamNhanNguoiDung.Name = "ColCamNhanNguoiDung";
+            // 
+            // ColHRTrungBinh
+            // 
+            this.ColHRTrungBinh.HeaderText = "HR trung bình";
+            this.ColHRTrungBinh.MinimumWidth = 10;
+            this.ColHRTrungBinh.Name = "ColHRTrungBinh";
             // 
             // btnThem
             // 
@@ -311,61 +367,6 @@
             this.label2.Size = new System.Drawing.Size(254, 31);
             this.label2.TabIndex = 29;
             this.label2.Text = "Quãng đường (km)";
-            // 
-            // colID
-            // 
-            this.colID.HeaderText = "ID";
-            this.colID.MinimumWidth = 10;
-            this.colID.Name = "colID";
-            this.colID.Visible = false;
-            // 
-            // colBuoiChay
-            // 
-            this.colBuoiChay.HeaderText = "Buổi chạy";
-            this.colBuoiChay.MinimumWidth = 10;
-            this.colBuoiChay.Name = "colBuoiChay";
-            // 
-            // ColNgayChay
-            // 
-            this.ColNgayChay.HeaderText = "Ngày chạy";
-            this.ColNgayChay.MinimumWidth = 10;
-            this.ColNgayChay.Name = "ColNgayChay";
-            // 
-            // colQuangDuong
-            // 
-            this.colQuangDuong.HeaderText = "Quãng đường";
-            this.colQuangDuong.MinimumWidth = 10;
-            this.colQuangDuong.Name = "colQuangDuong";
-            // 
-            // ColThoiGian
-            // 
-            this.ColThoiGian.HeaderText = "Thòi gian";
-            this.ColThoiGian.MinimumWidth = 10;
-            this.ColThoiGian.Name = "ColThoiGian";
-            // 
-            // ColPaceTB
-            // 
-            this.ColPaceTB.HeaderText = "Pace trung bình";
-            this.ColPaceTB.MinimumWidth = 10;
-            this.ColPaceTB.Name = "ColPaceTB";
-            // 
-            // ColDiaHinh
-            // 
-            this.ColDiaHinh.HeaderText = "Địa hình";
-            this.ColDiaHinh.MinimumWidth = 10;
-            this.ColDiaHinh.Name = "ColDiaHinh";
-            // 
-            // ColCamNhanNguoiDung
-            // 
-            this.ColCamNhanNguoiDung.HeaderText = "Cảm nhận người dùng";
-            this.ColCamNhanNguoiDung.MinimumWidth = 10;
-            this.ColCamNhanNguoiDung.Name = "ColCamNhanNguoiDung";
-            // 
-            // ColHRTrungBinh
-            // 
-            this.ColHRTrungBinh.HeaderText = "HR trung bình";
-            this.ColHRTrungBinh.MinimumWidth = 10;
-            this.ColHRTrungBinh.Name = "ColHRTrungBinh";
             // 
             // frmRunLog
             // 
