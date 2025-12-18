@@ -19,15 +19,17 @@ namespace RunningWinForm
     public partial class frmRunLog : Form
     {
         private readonly User _currentUser;
+        private readonly bool _isAdminMode;
         private readonly RunSessionServices _runSessionServices;
         private List<RunSession> _runSessions;
 
-        public frmRunLog(User currentUser)
+        public frmRunLog(User currentUser, bool isAdmin = false)
         {
             var context = new RunningContext();
             var runRepo = new RunRepository(context);
             var userRepo = new UserRepository(context);
             _currentUser = currentUser;
+            _isAdminMode = isAdmin;
             _runSessionServices = new RunSessionServices(runRepo, userRepo);
             InitializeComponent();
             LoadData();
@@ -36,7 +38,28 @@ namespace RunningWinForm
             LoadPaceTrungBinh();
             ClearInput();
         }
-        
+
+        private void frmRunLog_Load(object sender, EventArgs e)
+        {
+            // --- PHẦN UI (Giao diện) ---
+            txtUserLoggedIn.Text = _currentUser.Username;
+
+            if (_isAdminMode)
+            {
+                txtUserLoggedIn.Enabled = true;
+                this.Text = $"ADMIN MODE - {_currentUser.Username}";
+                // Bật các nút chức năng Admin nếu cần
+            }
+            else
+            {
+                txtUserLoggedIn.Enabled = false;
+                this.Text = "Nhật ký chạy bộ";
+            }
+
+            // --- PHẦN DATA (Dữ liệu) ---
+            LoadData(); // Gọi hàm riêng để tái sử dụng sau này
+        }
+
         private void ClearInput()
         {
             cmbBuoiChay.SelectedIndex = 0;
@@ -155,7 +178,7 @@ namespace RunningWinForm
         {
             try
             {
-                _runSessions = _runSessionServices.GetUserRuns(_currentUser.UserID);
+                _runSessions = _runSessionServices.GetTopRuns(_currentUser, _isAdminMode);
                 ToGrid(_runSessions);
             }    
             catch (Exception ex)
@@ -213,11 +236,6 @@ namespace RunningWinForm
                 TimeFormat.RedoTime(selectedSession.Cells["ColThoiGian"].Value?.ToString(), cmbGioThoiGian, cmbPhutThoiGian, cmbGiayThoiGian);
                 TimeFormat.RedoTime(selectedSession.Cells["ColPaceTB"].Value?.ToString(), null, cmbPhutPace, cmbGiayPace);
             }
-        }
-
-        private void frmRunLog_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

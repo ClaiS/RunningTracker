@@ -35,6 +35,7 @@
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.btnLogin = new System.Windows.Forms.Button();
             this.btnRegister = new System.Windows.Forms.Button();
+            this.chkPassword = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // lblLoginTitle
@@ -50,35 +51,35 @@
             // lblUsername
             // 
             this.lblUsername.AutoSize = true;
-            this.lblUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUsername.Location = new System.Drawing.Point(160, 186);
+            this.lblUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUsername.Location = new System.Drawing.Point(28, 184);
             this.lblUsername.Name = "lblUsername";
-            this.lblUsername.Size = new System.Drawing.Size(203, 31);
+            this.lblUsername.Size = new System.Drawing.Size(217, 31);
             this.lblUsername.TabIndex = 1;
             this.lblUsername.Text = "Tên đăng nhập:";
             // 
             // lblPassword
             // 
             this.lblPassword.AutoSize = true;
-            this.lblPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPassword.Location = new System.Drawing.Point(190, 306);
+            this.lblPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPassword.Location = new System.Drawing.Point(58, 306);
             this.lblPassword.Name = "lblPassword";
-            this.lblPassword.Size = new System.Drawing.Size(133, 31);
+            this.lblPassword.Size = new System.Drawing.Size(142, 31);
             this.lblPassword.TabIndex = 2;
             this.lblPassword.Text = "Mật khẩu:";
             // 
             // txtUsername
             // 
             this.txtUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUsername.Location = new System.Drawing.Point(428, 186);
+            this.txtUsername.Location = new System.Drawing.Point(296, 184);
             this.txtUsername.Name = "txtUsername";
-            this.txtUsername.Size = new System.Drawing.Size(250, 38);
+            this.txtUsername.Size = new System.Drawing.Size(316, 38);
             this.txtUsername.TabIndex = 3;
             // 
             // txtPassword
             // 
             this.txtPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPassword.Location = new System.Drawing.Point(428, 299);
+            this.txtPassword.Location = new System.Drawing.Point(296, 299);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(250, 38);
             this.txtPassword.TabIndex = 4;
@@ -104,11 +105,24 @@
             this.btnRegister.Text = "Đăng ký";
             this.btnRegister.UseVisualStyleBackColor = true;
             // 
+            // chkPassword
+            // 
+            this.chkPassword.AutoSize = true;
+            this.chkPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkPassword.Location = new System.Drawing.Point(601, 301);
+            this.chkPassword.Name = "chkPassword";
+            this.chkPassword.Size = new System.Drawing.Size(220, 35);
+            this.chkPassword.TabIndex = 7;
+            this.chkPassword.Text = "Hiện mật khẩu";
+            this.chkPassword.UseVisualStyleBackColor = true;
+            this.chkPassword.CheckedChanged += new System.EventHandler(this.chkPassword_CheckedChanged);
+            // 
             // frmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(854, 522);
+            this.Controls.Add(this.chkPassword);
             this.Controls.Add(this.btnRegister);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.txtPassword);
@@ -132,5 +146,6 @@
         private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.Button btnRegister;
+        private System.Windows.Forms.CheckBox chkPassword;
     }
 }

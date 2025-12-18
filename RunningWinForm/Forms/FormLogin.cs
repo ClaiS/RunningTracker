@@ -64,5 +64,20 @@ namespace RunningWinForm
                 this.Close();
             }
         }
+
+        private void chkPassword_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkPassword.Checked)
+            {
+                // Khi tick vào: Hiện chữ bình thường
+                // '\0' là ký tự null, nghĩa là không dùng ký tự thay thế nào cả
+                txtPassword.PasswordChar = '\0';
+            }
+            else
+            {
+                // Khi bỏ tick: Hiện lại dấu sao
+                txtPassword.UseSystemPasswordChar = !chkPassword.Checked;
+            }
+        }
     }
 }

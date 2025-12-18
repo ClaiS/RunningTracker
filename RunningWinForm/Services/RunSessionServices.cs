@@ -41,9 +41,16 @@ namespace RunningWinForm.Services
             _runRepository.Add(session);
         }
 
-        public List<RunSession> GetUserRuns(int userId)
+        public List<RunSession> GetAllRuns(int userId)
         {
             return _runRepository.GetByUser(userId);
+        }
+
+        public List<RunSession> GetTopRuns(User currentUser, bool isAdmin)
+        {
+            int? userIdParam = isAdmin ? (int?)null : currentUser.UserID;
+
+            return _runRepository.GetByUser(userIdParam, 50);
         }
 
         public List<RunSession> SearchRunsByUsername(string username)

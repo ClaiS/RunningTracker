@@ -37,10 +37,13 @@ namespace RunningWinForm
                 }
             }
 
-            var runLogForm = new frmRunLog(_currentUser);
+            bool isAdmin = _currentUser.UserRoles.Any(r => r.RoleID == 1);
+
+            var runLogForm = new frmRunLog(_currentUser, isAdmin);
             runLogForm.MdiParent = this;
             runLogForm.Show();
         }
+
 
         private void mnuHeThongThoat_Click(object sender, EventArgs e)
         {

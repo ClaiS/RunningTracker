@@ -62,14 +62,27 @@
             this.cmbPhutPace = new System.Windows.Forms.ComboBox();
             this.txtQuangDuong = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.grpMainInfo = new System.Windows.Forms.GroupBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtCriteria = new System.Windows.Forms.TextBox();
+            this.cmbCriteria = new System.Windows.Forms.ComboBox();
+            this.lblSearchRunType = new System.Windows.Forms.Label();
+            this.cmbRunType = new System.Windows.Forms.ComboBox();
+            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.lblDateTo = new System.Windows.Forms.Label();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.lblDateFrom = new System.Windows.Forms.Label();
+            this.txtUserLoggedIn = new System.Windows.Forms.TextBox();
+            this.lblUserLoggedIn = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvThongTinChayBo)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(837, 9);
+            this.label1.Location = new System.Drawing.Point(24, 112);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(667, 63);
             this.label1.TabIndex = 0;
@@ -83,7 +96,7 @@
             "Tempo",
             "Interval",
             "Long"});
-            this.cmbBuoiChay.Location = new System.Drawing.Point(326, 152);
+            this.cmbBuoiChay.Location = new System.Drawing.Point(332, 376);
             this.cmbBuoiChay.Name = "cmbBuoiChay";
             this.cmbBuoiChay.Size = new System.Drawing.Size(243, 39);
             this.cmbBuoiChay.TabIndex = 1;
@@ -92,7 +105,7 @@
             // 
             this.lblBuoiChay.AutoSize = true;
             this.lblBuoiChay.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBuoiChay.Location = new System.Drawing.Point(23, 152);
+            this.lblBuoiChay.Location = new System.Drawing.Point(29, 376);
             this.lblBuoiChay.Name = "lblBuoiChay";
             this.lblBuoiChay.Size = new System.Drawing.Size(142, 31);
             this.lblBuoiChay.TabIndex = 2;
@@ -102,7 +115,7 @@
             // 
             this.lblNgayChay.AutoSize = true;
             this.lblNgayChay.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNgayChay.Location = new System.Drawing.Point(23, 250);
+            this.lblNgayChay.Location = new System.Drawing.Point(29, 474);
             this.lblNgayChay.Name = "lblNgayChay";
             this.lblNgayChay.Size = new System.Drawing.Size(152, 31);
             this.lblNgayChay.TabIndex = 3;
@@ -112,7 +125,7 @@
             // 
             this.lblQuangDuong.AutoSize = true;
             this.lblQuangDuong.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblQuangDuong.Location = new System.Drawing.Point(23, 542);
+            this.lblQuangDuong.Location = new System.Drawing.Point(29, 766);
             this.lblQuangDuong.Name = "lblQuangDuong";
             this.lblQuangDuong.Size = new System.Drawing.Size(218, 31);
             this.lblQuangDuong.TabIndex = 5;
@@ -122,7 +135,7 @@
             // 
             this.lblThoiGian.AutoSize = true;
             this.lblThoiGian.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblThoiGian.Location = new System.Drawing.Point(23, 437);
+            this.lblThoiGian.Location = new System.Drawing.Point(29, 661);
             this.lblThoiGian.Name = "lblThoiGian";
             this.lblThoiGian.Size = new System.Drawing.Size(234, 31);
             this.lblThoiGian.TabIndex = 7;
@@ -132,7 +145,7 @@
             // 
             this.lblDiaHinh.AutoSize = true;
             this.lblDiaHinh.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDiaHinh.Location = new System.Drawing.Point(23, 648);
+            this.lblDiaHinh.Location = new System.Drawing.Point(29, 872);
             this.lblDiaHinh.Name = "lblDiaHinh";
             this.lblDiaHinh.Size = new System.Drawing.Size(121, 31);
             this.lblDiaHinh.TabIndex = 9;
@@ -142,7 +155,7 @@
             // 
             this.lblCamNhanNguoiDung.AutoSize = true;
             this.lblCamNhanNguoiDung.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCamNhanNguoiDung.Location = new System.Drawing.Point(23, 756);
+            this.lblCamNhanNguoiDung.Location = new System.Drawing.Point(29, 980);
             this.lblCamNhanNguoiDung.Name = "lblCamNhanNguoiDung";
             this.lblCamNhanNguoiDung.Size = new System.Drawing.Size(297, 31);
             this.lblCamNhanNguoiDung.TabIndex = 11;
@@ -153,7 +166,7 @@
             this.lblHRTrungBinh.AutoSize = true;
             this.lblHRTrungBinh.BackColor = System.Drawing.SystemColors.Control;
             this.lblHRTrungBinh.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHRTrungBinh.Location = new System.Drawing.Point(23, 863);
+            this.lblHRTrungBinh.Location = new System.Drawing.Point(29, 1087);
             this.lblHRTrungBinh.Name = "lblHRTrungBinh";
             this.lblHRTrungBinh.Size = new System.Drawing.Size(259, 31);
             this.lblHRTrungBinh.TabIndex = 13;
@@ -162,7 +175,7 @@
             // cmbCamNhanNguoiDung
             // 
             this.cmbCamNhanNguoiDung.FormattingEnabled = true;
-            this.cmbCamNhanNguoiDung.Location = new System.Drawing.Point(326, 756);
+            this.cmbCamNhanNguoiDung.Location = new System.Drawing.Point(332, 980);
             this.cmbCamNhanNguoiDung.Name = "cmbCamNhanNguoiDung";
             this.cmbCamNhanNguoiDung.Size = new System.Drawing.Size(243, 39);
             this.cmbCamNhanNguoiDung.TabIndex = 15;
@@ -174,7 +187,7 @@
             "Bằng phẳng",
             "Dốc",
             "Gồ gề"});
-            this.cmbDiaHinh.Location = new System.Drawing.Point(326, 648);
+            this.cmbDiaHinh.Location = new System.Drawing.Point(332, 872);
             this.cmbDiaHinh.Name = "cmbDiaHinh";
             this.cmbDiaHinh.Size = new System.Drawing.Size(243, 39);
             this.cmbDiaHinh.TabIndex = 16;
@@ -193,7 +206,7 @@
             this.ColDiaHinh,
             this.ColCamNhanNguoiDung,
             this.ColHRTrungBinh});
-            this.dgvThongTinChayBo.Location = new System.Drawing.Point(624, 136);
+            this.dgvThongTinChayBo.Location = new System.Drawing.Point(633, 364);
             this.dgvThongTinChayBo.Name = "dgvThongTinChayBo";
             this.dgvThongTinChayBo.RowHeadersWidth = 82;
             this.dgvThongTinChayBo.RowTemplate.Height = 33;
@@ -258,7 +271,7 @@
             // 
             // btnThem
             // 
-            this.btnThem.Location = new System.Drawing.Point(299, 952);
+            this.btnThem.Location = new System.Drawing.Point(297, 1216);
             this.btnThem.Name = "btnThem";
             this.btnThem.Size = new System.Drawing.Size(165, 67);
             this.btnThem.TabIndex = 18;
@@ -268,7 +281,7 @@
             // 
             // btnSua
             // 
-            this.btnSua.Location = new System.Drawing.Point(799, 952);
+            this.btnSua.Location = new System.Drawing.Point(797, 1216);
             this.btnSua.Name = "btnSua";
             this.btnSua.Size = new System.Drawing.Size(157, 67);
             this.btnSua.TabIndex = 19;
@@ -278,7 +291,7 @@
             // 
             // btnXoa
             // 
-            this.btnXoa.Location = new System.Drawing.Point(1296, 952);
+            this.btnXoa.Location = new System.Drawing.Point(1294, 1216);
             this.btnXoa.Name = "btnXoa";
             this.btnXoa.Size = new System.Drawing.Size(162, 67);
             this.btnXoa.TabIndex = 20;
@@ -287,7 +300,7 @@
             // 
             // btnHuy
             // 
-            this.btnHuy.Location = new System.Drawing.Point(1792, 952);
+            this.btnHuy.Location = new System.Drawing.Point(1790, 1216);
             this.btnHuy.Name = "btnHuy";
             this.btnHuy.Size = new System.Drawing.Size(156, 67);
             this.btnHuy.TabIndex = 21;
@@ -297,7 +310,7 @@
             // 
             // txtHRTrungBinh
             // 
-            this.txtHRTrungBinh.Location = new System.Drawing.Point(326, 863);
+            this.txtHRTrungBinh.Location = new System.Drawing.Point(332, 1087);
             this.txtHRTrungBinh.Name = "txtHRTrungBinh";
             this.txtHRTrungBinh.Size = new System.Drawing.Size(243, 38);
             this.txtHRTrungBinh.TabIndex = 22;
@@ -305,7 +318,7 @@
             // dtpNgayChay
             // 
             this.dtpNgayChay.CustomFormat = "dd/MM/yyyy";
-            this.dtpNgayChay.Location = new System.Drawing.Point(326, 250);
+            this.dtpNgayChay.Location = new System.Drawing.Point(332, 474);
             this.dtpNgayChay.Name = "dtpNgayChay";
             this.dtpNgayChay.Size = new System.Drawing.Size(243, 38);
             this.dtpNgayChay.TabIndex = 23;
@@ -313,7 +326,7 @@
             // cmbGioThoiGian
             // 
             this.cmbGioThoiGian.FormattingEnabled = true;
-            this.cmbGioThoiGian.Location = new System.Drawing.Point(326, 437);
+            this.cmbGioThoiGian.Location = new System.Drawing.Point(332, 661);
             this.cmbGioThoiGian.Name = "cmbGioThoiGian";
             this.cmbGioThoiGian.Size = new System.Drawing.Size(69, 39);
             this.cmbGioThoiGian.TabIndex = 24;
@@ -321,7 +334,7 @@
             // cmbPhutThoiGian
             // 
             this.cmbPhutThoiGian.FormattingEnabled = true;
-            this.cmbPhutThoiGian.Location = new System.Drawing.Point(411, 437);
+            this.cmbPhutThoiGian.Location = new System.Drawing.Point(417, 661);
             this.cmbPhutThoiGian.Name = "cmbPhutThoiGian";
             this.cmbPhutThoiGian.Size = new System.Drawing.Size(69, 39);
             this.cmbPhutThoiGian.TabIndex = 25;
@@ -329,7 +342,7 @@
             // cmbGiayThoiGian
             // 
             this.cmbGiayThoiGian.FormattingEnabled = true;
-            this.cmbGiayThoiGian.Location = new System.Drawing.Point(500, 437);
+            this.cmbGiayThoiGian.Location = new System.Drawing.Point(506, 661);
             this.cmbGiayThoiGian.Name = "cmbGiayThoiGian";
             this.cmbGiayThoiGian.Size = new System.Drawing.Size(69, 39);
             this.cmbGiayThoiGian.TabIndex = 26;
@@ -337,7 +350,7 @@
             // cmbGiayPace
             // 
             this.cmbGiayPace.FormattingEnabled = true;
-            this.cmbGiayPace.Location = new System.Drawing.Point(455, 542);
+            this.cmbGiayPace.Location = new System.Drawing.Point(461, 766);
             this.cmbGiayPace.Name = "cmbGiayPace";
             this.cmbGiayPace.Size = new System.Drawing.Size(69, 39);
             this.cmbGiayPace.TabIndex = 28;
@@ -345,14 +358,14 @@
             // cmbPhutPace
             // 
             this.cmbPhutPace.FormattingEnabled = true;
-            this.cmbPhutPace.Location = new System.Drawing.Point(366, 542);
+            this.cmbPhutPace.Location = new System.Drawing.Point(372, 766);
             this.cmbPhutPace.Name = "cmbPhutPace";
             this.cmbPhutPace.Size = new System.Drawing.Size(69, 39);
             this.cmbPhutPace.TabIndex = 27;
             // 
             // txtQuangDuong
             // 
-            this.txtQuangDuong.Location = new System.Drawing.Point(326, 340);
+            this.txtQuangDuong.Location = new System.Drawing.Point(332, 564);
             this.txtQuangDuong.Name = "txtQuangDuong";
             this.txtQuangDuong.Size = new System.Drawing.Size(243, 38);
             this.txtQuangDuong.TabIndex = 30;
@@ -362,16 +375,149 @@
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.SystemColors.Control;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(23, 340);
+            this.label2.Location = new System.Drawing.Point(29, 564);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(254, 31);
             this.label2.TabIndex = 29;
             this.label2.Text = "Quãng đường (km)";
             // 
+            // grpMainInfo
+            // 
+            this.grpMainInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grpMainInfo.Location = new System.Drawing.Point(18, 289);
+            this.grpMainInfo.Name = "grpMainInfo";
+            this.grpMainInfo.Size = new System.Drawing.Size(578, 872);
+            this.grpMainInfo.TabIndex = 31;
+            this.grpMainInfo.TabStop = false;
+            this.grpMainInfo.Text = "Thông tin chính";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.txtCriteria);
+            this.groupBox1.Controls.Add(this.cmbCriteria);
+            this.groupBox1.Controls.Add(this.lblSearchRunType);
+            this.groupBox1.Controls.Add(this.cmbRunType);
+            this.groupBox1.Controls.Add(this.dateTimePicker2);
+            this.groupBox1.Controls.Add(this.lblDateTo);
+            this.groupBox1.Controls.Add(this.dateTimePicker1);
+            this.groupBox1.Controls.Add(this.lblDateFrom);
+            this.groupBox1.Controls.Add(this.txtUserLoggedIn);
+            this.groupBox1.Controls.Add(this.lblUserLoggedIn);
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Location = new System.Drawing.Point(785, 92);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(1451, 192);
+            this.groupBox1.TabIndex = 32;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Tìm kiếm nâng cao";
+            // 
+            // txtCriteria
+            // 
+            this.txtCriteria.Location = new System.Drawing.Point(1122, 120);
+            this.txtCriteria.Name = "txtCriteria";
+            this.txtCriteria.Size = new System.Drawing.Size(243, 47);
+            this.txtCriteria.TabIndex = 40;
+            // 
+            // cmbCriteria
+            // 
+            this.cmbCriteria.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbCriteria.FormattingEnabled = true;
+            this.cmbCriteria.Items.AddRange(new object[] {
+            "Easy",
+            "Tempo",
+            "Interval",
+            "Long"});
+            this.cmbCriteria.Location = new System.Drawing.Point(843, 125);
+            this.cmbCriteria.Name = "cmbCriteria";
+            this.cmbCriteria.Size = new System.Drawing.Size(243, 45);
+            this.cmbCriteria.TabIndex = 39;
+            // 
+            // lblSearchRunType
+            // 
+            this.lblSearchRunType.AutoSize = true;
+            this.lblSearchRunType.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSearchRunType.Location = new System.Drawing.Point(890, 41);
+            this.lblSearchRunType.Name = "lblSearchRunType";
+            this.lblSearchRunType.Size = new System.Drawing.Size(166, 37);
+            this.lblSearchRunType.TabIndex = 38;
+            this.lblSearchRunType.Text = "Buổi chạy";
+            // 
+            // cmbRunType
+            // 
+            this.cmbRunType.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbRunType.FormattingEnabled = true;
+            this.cmbRunType.Items.AddRange(new object[] {
+            "Easy",
+            "Tempo",
+            "Interval",
+            "Long"});
+            this.cmbRunType.Location = new System.Drawing.Point(1062, 38);
+            this.cmbRunType.Name = "cmbRunType";
+            this.cmbRunType.Size = new System.Drawing.Size(243, 45);
+            this.cmbRunType.TabIndex = 37;
+            // 
+            // dateTimePicker2
+            // 
+            this.dateTimePicker2.CustomFormat = "dd/MM/yyyy";
+            this.dateTimePicker2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePicker2.Location = new System.Drawing.Point(524, 120);
+            this.dateTimePicker2.Name = "dateTimePicker2";
+            this.dateTimePicker2.Size = new System.Drawing.Size(243, 44);
+            this.dateTimePicker2.TabIndex = 36;
+            // 
+            // lblDateTo
+            // 
+            this.lblDateTo.AutoSize = true;
+            this.lblDateTo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDateTo.Location = new System.Drawing.Point(357, 126);
+            this.lblDateTo.Name = "lblDateTo";
+            this.lblDateTo.Size = new System.Drawing.Size(161, 37);
+            this.lblDateTo.TabIndex = 35;
+            this.lblDateTo.Text = "Đến ngày";
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.CustomFormat = "dd/MM/yyyy";
+            this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePicker1.Location = new System.Drawing.Point(524, 41);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(243, 44);
+            this.dateTimePicker1.TabIndex = 34;
+            // 
+            // lblDateFrom
+            // 
+            this.lblDateFrom.AutoSize = true;
+            this.lblDateFrom.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDateFrom.Location = new System.Drawing.Point(368, 47);
+            this.lblDateFrom.Name = "lblDateFrom";
+            this.lblDateFrom.Size = new System.Drawing.Size(140, 37);
+            this.lblDateFrom.TabIndex = 33;
+            this.lblDateFrom.Text = "Từ ngày";
+            // 
+            // txtUserLoggedIn
+            // 
+            this.txtUserLoggedIn.Enabled = false;
+            this.txtUserLoggedIn.Location = new System.Drawing.Point(49, 120);
+            this.txtUserLoggedIn.Name = "txtUserLoggedIn";
+            this.txtUserLoggedIn.Size = new System.Drawing.Size(260, 47);
+            this.txtUserLoggedIn.TabIndex = 32;
+            // 
+            // lblUserLoggedIn
+            // 
+            this.lblUserLoggedIn.AutoSize = true;
+            this.lblUserLoggedIn.BackColor = System.Drawing.SystemColors.Control;
+            this.lblUserLoggedIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUserLoggedIn.Location = new System.Drawing.Point(77, 64);
+            this.lblUserLoggedIn.Name = "lblUserLoggedIn";
+            this.lblUserLoggedIn.Size = new System.Drawing.Size(213, 37);
+            this.lblUserLoggedIn.TabIndex = 31;
+            this.lblUserLoggedIn.Text = "Người dùng: ";
+            // 
             // frmRunLog
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(2274, 1031);
+            this.ClientSize = new System.Drawing.Size(2274, 1329);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.txtQuangDuong);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.cmbGiayPace);
@@ -397,12 +543,15 @@
             this.Controls.Add(this.lblBuoiChay);
             this.Controls.Add(this.cmbBuoiChay);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.grpMainInfo);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmRunLog";
             this.Text = "Thông tin quản lý chạy bộ";
             this.Load += new System.EventHandler(this.frmRunLog_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvThongTinChayBo)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -444,5 +593,17 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColDiaHinh;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColCamNhanNguoiDung;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColHRTrungBinh;
+        private System.Windows.Forms.GroupBox grpMainInfo;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.TextBox txtUserLoggedIn;
+        private System.Windows.Forms.Label lblUserLoggedIn;
+        private System.Windows.Forms.Label lblSearchRunType;
+        private System.Windows.Forms.ComboBox cmbRunType;
+        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.Label lblDateTo;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Label lblDateFrom;
+        private System.Windows.Forms.ComboBox cmbCriteria;
+        private System.Windows.Forms.TextBox txtCriteria;
     }
 }
