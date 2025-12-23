@@ -46,9 +46,9 @@ namespace RunningWinForm
 
             if (_isAdminMode)
             {
+                // Tựa đề cho admin
                 txtUserLoggedIn.Enabled = true;
                 this.Text = $"ADMIN MODE - {_currentUser.Username}";
-                // Bật các nút chức năng Admin nếu cần
             }
             else
             {
@@ -56,8 +56,7 @@ namespace RunningWinForm
                 this.Text = "Nhật ký chạy bộ";
             }
 
-            // --- PHẦN DATA (Dữ liệu) ---
-            LoadData(); // Gọi hàm riêng để tái sử dụng sau này
+            LoadData();
         }
 
         private void ClearInput()

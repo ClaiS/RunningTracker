@@ -14,6 +14,7 @@ namespace RunningWinForm
     public partial class frmMain : Form
     {
         private readonly User _currentUser;
+
         public frmMain()
         {
             InitializeComponent();
@@ -24,6 +25,24 @@ namespace RunningWinForm
         {
             InitializeComponent();
             _currentUser = currentUser;
+        }
+
+        private void frmMain_Load(object sender, EventArgs e)
+        {
+            bool isAdmin = IsAdmin();
+
+            mnuRoleManager.Enabled = isAdmin;
+            mnuUserManager.Enabled = isAdmin;
+        }
+
+        private bool IsAdmin()
+        {
+            if(_currentUser == null || _currentUser.UserRoles == null)
+            {
+                return false;
+            }
+
+            return _currentUser.UserRoles.Any(ur => ur.RoleID == 1);
         }
 
         private void mnuQuanLyChayBo_Click(object sender, EventArgs e)
@@ -37,7 +56,7 @@ namespace RunningWinForm
                 }
             }
 
-            bool isAdmin = _currentUser.UserRoles.Any(r => r.RoleID == 1);
+            bool isAdmin = IsAdmin();
 
             var runLogForm = new frmRunLog(_currentUser, isAdmin);
             runLogForm.MdiParent = this;
@@ -67,6 +86,38 @@ namespace RunningWinForm
             }
 
             var searchForm = new frmSearch(_currentUser);
+            searchForm.MdiParent = this;
+            searchForm.Show();
+        }
+
+        private void mnuRoleManager_Click(object sender, EventArgs e)
+        {
+            foreach (Form child in this.MdiChildren)
+            {
+                if (child is frmRoleManager)
+                {
+                    child.Activate();
+                    return;
+                }
+            }
+
+            var searchForm = new frmRoleManager();
+            searchForm.MdiParent = this;
+            searchForm.Show();
+        }
+
+        private void mnuUserManager_Click(object sender, EventArgs e)
+        {
+            foreach (Form child in this.MdiChildren)
+            {
+                if (child is frmUserManager)
+                {
+                    child.Activate();
+                    return;
+                }
+            }
+
+            var searchForm = new frmUserManager();
             searchForm.MdiParent = this;
             searchForm.Show();
         }

@@ -36,6 +36,8 @@
             this.mnuQuanLyChayBo = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuThongKe = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuTimKiem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuRoleManager = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuUserManager = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -46,10 +48,12 @@
             this.menuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuHeThong,
             this.mnuQuanLy,
-            this.mnuTimKiem});
+            this.mnuTimKiem,
+            this.mnuRoleManager,
+            this.mnuUserManager});
             this.menuStrip2.Location = new System.Drawing.Point(0, 0);
             this.menuStrip2.Name = "menuStrip2";
-            this.menuStrip2.Size = new System.Drawing.Size(1589, 42);
+            this.menuStrip2.Size = new System.Drawing.Size(1589, 40);
             this.menuStrip2.TabIndex = 3;
             this.menuStrip2.Text = "menuStrip2";
             // 
@@ -59,7 +63,7 @@
             this.mnuDangXuat,
             this.mnuThoat});
             this.mnuHeThong.Name = "mnuHeThong";
-            this.mnuHeThong.Size = new System.Drawing.Size(135, 38);
+            this.mnuHeThong.Size = new System.Drawing.Size(135, 36);
             this.mnuHeThong.Text = "Hệ thống";
             // 
             // mnuDangXuat
@@ -82,7 +86,7 @@
             this.mnuQuanLyChayBo,
             this.mnuThongKe});
             this.mnuQuanLy.Name = "mnuQuanLy";
-            this.mnuQuanLy.Size = new System.Drawing.Size(117, 38);
+            this.mnuQuanLy.Size = new System.Drawing.Size(117, 36);
             this.mnuQuanLy.Text = "Quản lý";
             // 
             // mnuQuanLyChayBo
@@ -101,9 +105,23 @@
             // mnuTimKiem
             // 
             this.mnuTimKiem.Name = "mnuTimKiem";
-            this.mnuTimKiem.Size = new System.Drawing.Size(133, 38);
+            this.mnuTimKiem.Size = new System.Drawing.Size(133, 36);
             this.mnuTimKiem.Text = "Tìm kiếm";
             this.mnuTimKiem.Click += new System.EventHandler(this.mnuTimKiem_Click);
+            // 
+            // mnuRoleManager
+            // 
+            this.mnuRoleManager.Name = "mnuRoleManager";
+            this.mnuRoleManager.Size = new System.Drawing.Size(191, 36);
+            this.mnuRoleManager.Text = "Quản lý vai trò";
+            this.mnuRoleManager.Click += new System.EventHandler(this.mnuRoleManager_Click);
+            // 
+            // mnuUserManager
+            // 
+            this.mnuUserManager.Name = "mnuUserManager";
+            this.mnuUserManager.Size = new System.Drawing.Size(249, 36);
+            this.mnuUserManager.Text = "Quản lý người dùng";
+            this.mnuUserManager.Click += new System.EventHandler(this.mnuUserManager_Click);
             // 
             // frmMain
             // 
@@ -115,6 +133,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "frmMain";
             this.Text = "Quản lý chạy bộ";
+            this.Load += new System.EventHandler(this.frmMain_Load);
             this.menuStrip2.ResumeLayout(false);
             this.menuStrip2.PerformLayout();
             this.ResumeLayout(false);
@@ -132,6 +151,8 @@
         private System.Windows.Forms.ToolStripMenuItem mnuQuanLyChayBo;
         private System.Windows.Forms.ToolStripMenuItem mnuTimKiem;
         private System.Windows.Forms.ToolStripMenuItem mnuThongKe;
+        private System.Windows.Forms.ToolStripMenuItem mnuRoleManager;
+        private System.Windows.Forms.ToolStripMenuItem mnuUserManager;
     }
 }
 
