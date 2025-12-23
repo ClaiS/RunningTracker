@@ -23,7 +23,7 @@ namespace RunningWinForm.Data.Repositories
             _context.SaveChanges();
         }
 
-        public List<RunSession> GetByUser(int? userId = null, int? topCount = null)
+        public (List<RunSession> Data, int TotalRecords) GetByUser(int? userId = null, int? topCount = null)
         {
             // 1. Khởi tạo Query
             var query = _context.RunSessions
@@ -36,6 +36,8 @@ namespace RunningWinForm.Data.Repositories
                 query = query.Where(s => s.UserID == userId.Value);
             }
 
+            int TotalRecords = query.Count();
+
             // 3. Luôn luôn sắp xếp mới nhất lên đầu
             query = query.OrderByDescending(r => r.RunDate);
 
@@ -45,8 +47,10 @@ namespace RunningWinForm.Data.Repositories
                 query = query.Take(topCount.Value);
             }
 
+            var countList = query.ToList();
+
             // 5. Chạy lệnh lấy dữ liệu
-            return query.ToList();
+            return (countList, TotalRecords);
         }
 
         public void Delete(int sessionId)

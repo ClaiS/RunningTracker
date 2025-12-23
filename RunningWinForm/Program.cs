@@ -30,14 +30,34 @@ namespace RunningWinForm
             // 3. Tạo Service
             var accountService = new AccountServices(userRepository);
 
-            // 4. Tạo Form với Service đã tạo
-            var loginForm = new frmLogin(accountService);
+            bool isRunning = true;
 
-            // 5. Hiển thị form đăng nhập
-            if (loginForm.ShowDialog() == DialogResult.OK)
+            while(isRunning)
             {
-                var mainForm = new frmMain(loginForm.LoggedInUser);
-                Application.Run(mainForm);
+                var loginForm = new frmLogin(accountService);
+
+                DialogResult loginResult = loginForm.ShowDialog();
+
+                if(loginResult == DialogResult.OK && loginForm.LoggedInUser != null)
+                {
+                    var mainForm = new frmMain(loginForm.LoggedInUser);
+                    Application.Run(mainForm);
+                    if (mainForm.IsLogout)
+                    {
+                        // Quay lại form đăng nhập
+                        continue;
+                    }
+                    else
+                    {
+                        // Thoát ứng dụng
+                        isRunning = false;
+                    }
+                }
+                else
+                {
+                    // Đóng form đăng nhập hoặc đăng nhập thất bại, thoát ứng dụng
+                    isRunning = false;
+                }
             }
 
         }

@@ -177,8 +177,11 @@ namespace RunningWinForm
         {
             try
             {
-                _runSessions = _runSessionServices.GetTopRuns(_currentUser, _isAdminMode);
+                var topRunsResult = _runSessionServices.GetTopRuns(_currentUser, _isAdminMode);
+                txtAllRuns.Text = topRunsResult.TotalRecords.ToString();
+                _runSessions = topRunsResult.Data;
                 ToGrid(_runSessions);
+
             }    
             catch (Exception ex)
             {

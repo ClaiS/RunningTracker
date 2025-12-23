@@ -38,7 +38,10 @@
             this.mnuTimKiem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuRoleManager = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuUserManager = new System.Windows.Forms.ToolStripMenuItem();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripHello = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip2.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip2
@@ -123,10 +126,28 @@
             this.mnuUserManager.Text = "Quản lý người dùng";
             this.mnuUserManager.Click += new System.EventHandler(this.mnuUserManager_Click);
             // 
+            // statusStrip1
+            // 
+            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripHello});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 868);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(1589, 42);
+            this.statusStrip1.TabIndex = 5;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripHello
+            // 
+            this.toolStripHello.Name = "toolStripHello";
+            this.toolStripHello.Size = new System.Drawing.Size(237, 32);
+            this.toolStripHello.Text = "toolStripStatusLabel1";
+            // 
             // frmMain
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1589, 910);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip2);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.IsMdiContainer = true;
@@ -136,6 +157,8 @@
             this.Load += new System.EventHandler(this.frmMain_Load);
             this.menuStrip2.ResumeLayout(false);
             this.menuStrip2.PerformLayout();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -153,6 +176,8 @@
         private System.Windows.Forms.ToolStripMenuItem mnuThongKe;
         private System.Windows.Forms.ToolStripMenuItem mnuRoleManager;
         private System.Windows.Forms.ToolStripMenuItem mnuUserManager;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripHello;
     }
 }
 

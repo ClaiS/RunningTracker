@@ -1,4 +1,5 @@
-﻿using RunningWinForm.Data.Repositories;
+﻿using RunningWinForm.Data;
+using RunningWinForm.Data.Repositories;
 using RunningWinForm.Models;
 using System;
 using System.Collections.Generic;
@@ -13,11 +14,22 @@ namespace RunningWinForm.Services
     {
         private readonly RunRepository _runRepository;
         private readonly UserRepository _userRepository;
+        private RunningContext _context = new RunningContext();
 
         public RunSessionServices(RunRepository runRepository, UserRepository userRepository)
         {
             _runRepository = runRepository;
             _userRepository = userRepository;
+        }
+
+        public int LayTongSoBuoiChay()
+        {
+            return _context.RunSessions.Count();
+        }
+
+        public int LaySoBuoiChayTheoDieuKien(string Username)
+        {
+            return _context.RunSessions.Count(r => r.User.Username.Contains(Username));
         }
 
         public void AddRunSession(RunSession session)
@@ -41,19 +53,19 @@ namespace RunningWinForm.Services
             _runRepository.Add(session);
         }
 
-        public List<RunSession> GetAllRuns(int userId)
+        public (List<RunSession> Data, int TotalRecords) GetAllRuns(int userId)
         {
             return _runRepository.GetByUser(userId);
         }
 
-        public List<RunSession> GetTopRuns(User currentUser, bool isAdmin)
+        public (List<RunSession> Data, int TotalRecords) GetTopRuns(User currentUser, bool isAdmin)
         {
             int? userIdParam = isAdmin ? (int?)null : currentUser.UserID;
 
             return _runRepository.GetByUser(userIdParam, 50);
         }
 
-        public List<RunSession> SearchRunsByUsername(string username)
+        public (List<RunSession> Data, int TotalRecords) SearchRunsByUsername(string username)
         {
             var user = _userRepository.GetUser(username) ?? throw new Exception("Không tìm thấy người dùng này!");
 

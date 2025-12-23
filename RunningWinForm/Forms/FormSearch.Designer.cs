@@ -43,6 +43,8 @@
             this.btnHuy = new System.Windows.Forms.Button();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
+            this.lblAllRuns = new System.Windows.Forms.Label();
+            this.txtAllRuns = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvKetQua)).BeginInit();
             this.SuspendLayout();
             // 
@@ -50,7 +52,7 @@
             // 
             this.lblTimKiem.AutoSize = true;
             this.lblTimKiem.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTimKiem.Location = new System.Drawing.Point(584, 61);
+            this.lblTimKiem.Location = new System.Drawing.Point(586, 41);
             this.lblTimKiem.Name = "lblTimKiem";
             this.lblTimKiem.Size = new System.Drawing.Size(547, 63);
             this.lblTimKiem.TabIndex = 0;
@@ -60,7 +62,7 @@
             // 
             this.lblBuoiChay.AutoSize = true;
             this.lblBuoiChay.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBuoiChay.Location = new System.Drawing.Point(16, 822);
+            this.lblBuoiChay.Location = new System.Drawing.Point(18, 202);
             this.lblBuoiChay.Name = "lblBuoiChay";
             this.lblBuoiChay.Size = new System.Drawing.Size(353, 39);
             this.lblBuoiChay.TabIndex = 2;
@@ -68,6 +70,7 @@
             // 
             // dgvKetQua
             // 
+            this.dgvKetQua.AllowUserToAddRows = false;
             this.dgvKetQua.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvKetQua.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvKetQua.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -81,7 +84,7 @@
             this.ColCamNhanNguoiDung,
             this.ColHRTrungBinh});
             this.dgvKetQua.Enabled = false;
-            this.dgvKetQua.Location = new System.Drawing.Point(22, 194);
+            this.dgvKetQua.Location = new System.Drawing.Point(25, 304);
             this.dgvKetQua.Name = "dgvKetQua";
             this.dgvKetQua.RowHeadersWidth = 82;
             this.dgvKetQua.RowTemplate.Height = 33;
@@ -145,7 +148,7 @@
             // 
             // btnHuy
             // 
-            this.btnHuy.Location = new System.Drawing.Point(1469, 810);
+            this.btnHuy.Location = new System.Drawing.Point(1471, 928);
             this.btnHuy.Name = "btnHuy";
             this.btnHuy.Size = new System.Drawing.Size(156, 67);
             this.btnHuy.TabIndex = 21;
@@ -155,14 +158,14 @@
             // 
             // txtSearch
             // 
-            this.txtSearch.Location = new System.Drawing.Point(423, 825);
+            this.txtSearch.Location = new System.Drawing.Point(425, 205);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(298, 38);
             this.txtSearch.TabIndex = 22;
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(832, 810);
+            this.btnSearch.Location = new System.Drawing.Point(834, 190);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(156, 67);
             this.btnSearch.TabIndex = 23;
@@ -170,10 +173,30 @@
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
+            // lblAllRuns
+            // 
+            this.lblAllRuns.AutoSize = true;
+            this.lblAllRuns.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAllRuns.Location = new System.Drawing.Point(18, 943);
+            this.lblAllRuns.Name = "lblAllRuns";
+            this.lblAllRuns.Size = new System.Drawing.Size(271, 37);
+            this.lblAllRuns.TabIndex = 24;
+            this.lblAllRuns.Text = "Tổng buổi chạy: ";
+            // 
+            // txtAllRuns
+            // 
+            this.txtAllRuns.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAllRuns.Location = new System.Drawing.Point(295, 940);
+            this.txtAllRuns.Name = "txtAllRuns";
+            this.txtAllRuns.Size = new System.Drawing.Size(224, 44);
+            this.txtAllRuns.TabIndex = 25;
+            // 
             // frmSearch
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(1674, 931);
+            this.ClientSize = new System.Drawing.Size(1674, 1029);
+            this.Controls.Add(this.txtAllRuns);
+            this.Controls.Add(this.lblAllRuns);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.btnHuy);
@@ -208,5 +231,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColHRTrungBinh;
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.Label lblAllRuns;
+        private System.Windows.Forms.TextBox txtAllRuns;
     }
 }

@@ -14,7 +14,7 @@ namespace RunningWinForm
     public partial class frmMain : Form
     {
         private readonly User _currentUser;
-
+        public bool IsLogout { get; private set; } = false;
         public frmMain()
         {
             InitializeComponent();
@@ -30,9 +30,14 @@ namespace RunningWinForm
         private void frmMain_Load(object sender, EventArgs e)
         {
             bool isAdmin = IsAdmin();
-
             mnuRoleManager.Enabled = isAdmin;
             mnuUserManager.Enabled = isAdmin;
+
+            if (_currentUser != null)
+            {
+                // Hiển thị lời chào lên StatusStrip
+                toolStripHello.Text = $"Xin chào {_currentUser.FullName}";
+            }
         }
 
         private bool IsAdmin()
@@ -71,7 +76,20 @@ namespace RunningWinForm
 
         private void mnuHeThongDangXuat_Click(object sender, EventArgs e)
         {
-            this.Close();
+            DialogResult result = MessageBox.Show(
+            "Bạn có chắc chắn muốn đăng xuất không?",
+            "Xác nhận",
+            MessageBoxButtons.YesNo,
+            MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                IsLogout = true;
+
+                // Đóng form Main lại
+                // Khi form đóng, code sẽ chạy tiếp ở Program.cs
+                this.Close();
+            }
         }
 
         private void mnuTimKiem_Click(object sender, EventArgs e)

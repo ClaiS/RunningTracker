@@ -74,6 +74,8 @@
             this.lblDateFrom = new System.Windows.Forms.Label();
             this.txtUserLoggedIn = new System.Windows.Forms.TextBox();
             this.lblUserLoggedIn = new System.Windows.Forms.Label();
+            this.txtAllRuns = new System.Windows.Forms.TextBox();
+            this.lblAllRuns = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvThongTinChayBo)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -271,7 +273,7 @@
             // 
             // btnThem
             // 
-            this.btnThem.Location = new System.Drawing.Point(297, 1216);
+            this.btnThem.Location = new System.Drawing.Point(295, 1250);
             this.btnThem.Name = "btnThem";
             this.btnThem.Size = new System.Drawing.Size(165, 67);
             this.btnThem.TabIndex = 18;
@@ -281,7 +283,7 @@
             // 
             // btnSua
             // 
-            this.btnSua.Location = new System.Drawing.Point(797, 1216);
+            this.btnSua.Location = new System.Drawing.Point(795, 1250);
             this.btnSua.Name = "btnSua";
             this.btnSua.Size = new System.Drawing.Size(157, 67);
             this.btnSua.TabIndex = 19;
@@ -291,7 +293,7 @@
             // 
             // btnXoa
             // 
-            this.btnXoa.Location = new System.Drawing.Point(1294, 1216);
+            this.btnXoa.Location = new System.Drawing.Point(1292, 1250);
             this.btnXoa.Name = "btnXoa";
             this.btnXoa.Size = new System.Drawing.Size(162, 67);
             this.btnXoa.TabIndex = 20;
@@ -300,7 +302,7 @@
             // 
             // btnHuy
             // 
-            this.btnHuy.Location = new System.Drawing.Point(1790, 1216);
+            this.btnHuy.Location = new System.Drawing.Point(1788, 1250);
             this.btnHuy.Name = "btnHuy";
             this.btnHuy.Size = new System.Drawing.Size(156, 67);
             this.btnHuy.TabIndex = 21;
@@ -404,7 +406,7 @@
             this.groupBox1.Controls.Add(this.txtUserLoggedIn);
             this.groupBox1.Controls.Add(this.lblUserLoggedIn);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(785, 92);
+            this.groupBox1.Location = new System.Drawing.Point(785, 82);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(1451, 192);
             this.groupBox1.TabIndex = 32;
@@ -513,10 +515,30 @@
             this.lblUserLoggedIn.TabIndex = 31;
             this.lblUserLoggedIn.Text = "Người dùng: ";
             // 
+            // txtAllRuns
+            // 
+            this.txtAllRuns.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAllRuns.Location = new System.Drawing.Point(2012, 299);
+            this.txtAllRuns.Name = "txtAllRuns";
+            this.txtAllRuns.Size = new System.Drawing.Size(224, 44);
+            this.txtAllRuns.TabIndex = 34;
+            // 
+            // lblAllRuns
+            // 
+            this.lblAllRuns.AutoSize = true;
+            this.lblAllRuns.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAllRuns.Location = new System.Drawing.Point(1735, 302);
+            this.lblAllRuns.Name = "lblAllRuns";
+            this.lblAllRuns.Size = new System.Drawing.Size(271, 37);
+            this.lblAllRuns.TabIndex = 33;
+            this.lblAllRuns.Text = "Tổng buổi chạy: ";
+            // 
             // frmRunLog
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(2274, 1329);
+            this.ClientSize = new System.Drawing.Size(2274, 1379);
+            this.Controls.Add(this.txtAllRuns);
+            this.Controls.Add(this.lblAllRuns);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.txtQuangDuong);
             this.Controls.Add(this.label2);
@@ -605,5 +627,7 @@
         private System.Windows.Forms.Label lblDateFrom;
         private System.Windows.Forms.ComboBox cmbCriteria;
         private System.Windows.Forms.TextBox txtCriteria;
+        private System.Windows.Forms.TextBox txtAllRuns;
+        private System.Windows.Forms.Label lblAllRuns;
     }
 }

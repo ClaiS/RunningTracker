@@ -32,11 +32,6 @@ namespace RunningWinForm
             _runSessionServices = new RunSessionServices(runRepo, userRepo);
             InitializeComponent();
         }
-        public frmSearch()
-        {
-            InitializeComponent();
-        }
-
         private void btnSearch_Click(object sender, EventArgs e)
         {
             string keyword = txtSearch.Text;
@@ -66,7 +61,9 @@ namespace RunningWinForm
             }
             try
             {
-                _runSessions = _runSessionServices.SearchRunsByUsername(keyword);
+                var allRunsByUser = _runSessionServices.SearchRunsByUsername(keyword);
+                txtAllRuns.Text = allRunsByUser.TotalRecords.ToString();
+                _runSessions = allRunsByUser.Data;
                 if (_runSessions.Count == 0)
                 {
                     MessageBox.Show("Người dùng này chưa có buổi chạy nào.");
@@ -113,7 +110,7 @@ namespace RunningWinForm
 
         private void frmSearch_Load(object sender, EventArgs e)
         {
-
+            
         }
     }
 }
