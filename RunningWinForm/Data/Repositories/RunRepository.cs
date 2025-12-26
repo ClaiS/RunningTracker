@@ -62,5 +62,44 @@ namespace RunningWinForm.Data.Repositories
                 _context.SaveChanges();
             }
         }
+
+        public List<RunSession> GetRunsByFilter(int userId, int year, int? month = null, int? week = null)
+        {
+            // 1. Lọc cơ bản theo User và Năm
+            var query = _context.RunSessions.AsQueryable()
+                .Where(r => r.UserID == userId && r.RunDate.Year == year);
+
+            // 2. Nếu chọn Tháng -> Lọc thêm tháng
+            if (month.HasValue)
+            {
+                query = query.Where(r => r.RunDate.Month == month.Value);
+            }
+
+            // 3. Lấy dữ liệu về RAM để xử lý lọc Tuần (Vì LINQ to SQL xử lý tuần hơi phức tạp)
+            var result = query.ToList();
+
+            // 4. Nếu chọn Tuần -> Lọc tiếp trên RAM
+            if (week.HasValue)
+            {
+                // Sử dụng hàm GetIsoWeek (bạn cần viết hàm này hoặc dùng Calendar)
+                // Cách đơn giản nhất:
+                System.Globalization.Calendar cal = System.Globalization.CultureInfo.CurrentCulture.Calendar;
+                result = result.Where(r => cal.GetWeekOfYear(r.RunDate,
+                    System.Globalization.CalendarWeekRule.FirstFourDayWeek,
+                    DayOfWeek.Monday) == week.Value).ToList();
+            }
+
+            return result; // Trả về danh sách các buổi chạy thô
+        }
+
+        public List<int> GetAvailableYears(int userId)
+        {
+            return _context.RunSessions
+                .Where(r => r.UserID == userId)
+                .Select(r => r.RunDate.Year)
+                .Distinct()
+                .OrderByDescending(y => y)
+                .ToList();
+        }
     }
 }

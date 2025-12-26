@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lblTimKiem = new System.Windows.Forms.Label();
+            this.lblThongKe = new System.Windows.Forms.Label();
             this.lblBuoiChay = new System.Windows.Forms.Label();
             this.dgvKetQua = new System.Windows.Forms.DataGridView();
             this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -48,15 +48,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvKetQua)).BeginInit();
             this.SuspendLayout();
             // 
-            // lblTimKiem
+            // lblThongKe
             // 
-            this.lblTimKiem.AutoSize = true;
-            this.lblTimKiem.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTimKiem.Location = new System.Drawing.Point(586, 41);
-            this.lblTimKiem.Name = "lblTimKiem";
-            this.lblTimKiem.Size = new System.Drawing.Size(547, 63);
-            this.lblTimKiem.TabIndex = 0;
-            this.lblTimKiem.Text = "Tìm kiếm người dùng";
+            this.lblThongKe.AutoSize = true;
+            this.lblThongKe.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblThongKe.Location = new System.Drawing.Point(731, 27);
+            this.lblThongKe.Name = "lblThongKe";
+            this.lblThongKe.Size = new System.Drawing.Size(259, 63);
+            this.lblThongKe.TabIndex = 0;
+            this.lblThongKe.Text = "Thống kê";
             // 
             // lblBuoiChay
             // 
@@ -202,7 +202,7 @@
             this.Controls.Add(this.btnHuy);
             this.Controls.Add(this.dgvKetQua);
             this.Controls.Add(this.lblBuoiChay);
-            this.Controls.Add(this.lblTimKiem);
+            this.Controls.Add(this.lblThongKe);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmSearch";
@@ -216,7 +216,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Label lblTimKiem;
+        private System.Windows.Forms.Label lblThongKe;
         private System.Windows.Forms.Label lblBuoiChay;
         private System.Windows.Forms.DataGridView dgvKetQua;
         private System.Windows.Forms.Button btnHuy;

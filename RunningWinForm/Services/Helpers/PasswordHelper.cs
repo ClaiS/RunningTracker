@@ -5,7 +5,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RunningWinForm.Services
+namespace RunningWinForm.Services.Helpers
 {
     public static class PasswordHelper
     {

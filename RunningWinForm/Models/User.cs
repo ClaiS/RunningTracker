@@ -29,12 +29,6 @@ namespace RunningWinForm.Models
 
         public virtual ICollection<TrainingPlan> TrainingPlans { get; set; }
 
-        public virtual ICollection<MonthlySummary> MonthlySummaries { get; set; }
-
-        public virtual ICollection<YearlySummary> YearlySummaries { get; set; }
-
-        public virtual ICollection<WeeklySummary> WeeklySummaries { get; set; }
-
         public virtual ICollection<UserRole> UserRoles { get; set; }
         
     }

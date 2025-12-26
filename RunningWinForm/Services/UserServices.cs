@@ -1,5 +1,6 @@
 ﻿using RunningWinForm.Data.Repositories;
 using RunningWinForm.Models;
+using RunningWinForm.Services.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,8 @@ namespace RunningWinForm.Services
         }
 
         public List<User> GetAllUsers() => _userRepo.GetAll();
+
+        public User GetUserById(int id) => _userRepo.GetById(id);
 
         // LOGIC THÊM USER
         public void AddUser(User user, string confirmPass, int roleId)

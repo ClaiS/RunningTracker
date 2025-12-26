@@ -139,5 +139,21 @@ namespace RunningWinForm
             searchForm.MdiParent = this;
             searchForm.Show();
         }
+
+        private void mnuThongKe_Click(object sender, EventArgs e)
+        {
+            foreach (Form child in this.MdiChildren)
+            {
+                if (child is FrmStatistic)
+                {
+                    child.Activate();
+                    return;
+                }
+            }
+
+            var searchForm = new FrmStatistic(_currentUser);
+            searchForm.MdiParent = this;
+            searchForm.Show();
+        }
     }
 }

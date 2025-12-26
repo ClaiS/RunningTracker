@@ -56,7 +56,7 @@
             this.mnuUserManager});
             this.menuStrip2.Location = new System.Drawing.Point(0, 0);
             this.menuStrip2.Name = "menuStrip2";
-            this.menuStrip2.Size = new System.Drawing.Size(1589, 40);
+            this.menuStrip2.Size = new System.Drawing.Size(1589, 42);
             this.menuStrip2.TabIndex = 3;
             this.menuStrip2.Text = "menuStrip2";
             // 
@@ -66,7 +66,7 @@
             this.mnuDangXuat,
             this.mnuThoat});
             this.mnuHeThong.Name = "mnuHeThong";
-            this.mnuHeThong.Size = new System.Drawing.Size(135, 36);
+            this.mnuHeThong.Size = new System.Drawing.Size(135, 38);
             this.mnuHeThong.Text = "Hệ thống";
             // 
             // mnuDangXuat
@@ -89,40 +89,41 @@
             this.mnuQuanLyChayBo,
             this.mnuThongKe});
             this.mnuQuanLy.Name = "mnuQuanLy";
-            this.mnuQuanLy.Size = new System.Drawing.Size(117, 36);
+            this.mnuQuanLy.Size = new System.Drawing.Size(117, 38);
             this.mnuQuanLy.Text = "Quản lý";
             // 
             // mnuQuanLyChayBo
             // 
             this.mnuQuanLyChayBo.Name = "mnuQuanLyChayBo";
-            this.mnuQuanLyChayBo.Size = new System.Drawing.Size(321, 44);
+            this.mnuQuanLyChayBo.Size = new System.Drawing.Size(359, 44);
             this.mnuQuanLyChayBo.Text = "Quản lý chạy bộ";
             this.mnuQuanLyChayBo.Click += new System.EventHandler(this.mnuQuanLyChayBo_Click);
             // 
             // mnuThongKe
             // 
             this.mnuThongKe.Name = "mnuThongKe";
-            this.mnuThongKe.Size = new System.Drawing.Size(321, 44);
+            this.mnuThongKe.Size = new System.Drawing.Size(359, 44);
             this.mnuThongKe.Text = "Thống kê";
+            this.mnuThongKe.Click += new System.EventHandler(this.mnuThongKe_Click);
             // 
             // mnuTimKiem
             // 
             this.mnuTimKiem.Name = "mnuTimKiem";
-            this.mnuTimKiem.Size = new System.Drawing.Size(133, 36);
+            this.mnuTimKiem.Size = new System.Drawing.Size(133, 38);
             this.mnuTimKiem.Text = "Tìm kiếm";
             this.mnuTimKiem.Click += new System.EventHandler(this.mnuTimKiem_Click);
             // 
             // mnuRoleManager
             // 
             this.mnuRoleManager.Name = "mnuRoleManager";
-            this.mnuRoleManager.Size = new System.Drawing.Size(191, 36);
+            this.mnuRoleManager.Size = new System.Drawing.Size(191, 38);
             this.mnuRoleManager.Text = "Quản lý vai trò";
             this.mnuRoleManager.Click += new System.EventHandler(this.mnuRoleManager_Click);
             // 
             // mnuUserManager
             // 
             this.mnuUserManager.Name = "mnuUserManager";
-            this.mnuUserManager.Size = new System.Drawing.Size(249, 36);
+            this.mnuUserManager.Size = new System.Drawing.Size(249, 38);
             this.mnuUserManager.Text = "Quản lý người dùng";
             this.mnuUserManager.Click += new System.EventHandler(this.mnuUserManager_Click);
             // 
