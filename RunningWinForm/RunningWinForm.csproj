@@ -187,6 +187,7 @@
     <Compile Include="Services\DTOs\ReportPrintDTO.cs" />
     <Compile Include="Services\Helpers\CalendarHelper.cs" />
     <Compile Include="Services\DTOs\StatisticDTO.cs" />
+    <Compile Include="Services\Helpers\LiveChartHelper.cs" />
     <Compile Include="Services\Helpers\PasswordHelper.cs" />
     <Compile Include="Services\RoleServices.cs" />
     <Compile Include="Services\RunSessionServices.cs" />
@@ -218,10 +219,7 @@
     <EmbeddedResource Include="Forms\FormRunLog.resx">
       <DependentUpon>FormRunLog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\RunningReport.rdlc">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\RunningReport_Improved.rdlc" />
+    <EmbeddedResource Include="Forms\RunningReport.rdlc" />
     <EmbeddedResource Include="Migrations\202512120210037_InitialCreate.resx">
       <DependentUpon>202512120210037_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
@@ -254,6 +252,7 @@
     </Compile>
     <None Include="app.manifest" />
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\RunningWinForm.Services.DTOs.ChartDataDTO.datasource" />
     <None Include="Properties\DataSources\RunningWinForm.Services.DTOs.ReportPrintDTO.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

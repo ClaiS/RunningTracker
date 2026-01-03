@@ -64,13 +64,12 @@
             this.label2 = new System.Windows.Forms.Label();
             this.grpMainInfo = new System.Windows.Forms.GroupBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.txtCriteria = new System.Windows.Forms.TextBox();
-            this.cmbCriteria = new System.Windows.Forms.ComboBox();
+            this.btnTimKiem = new System.Windows.Forms.Button();
             this.lblSearchRunType = new System.Windows.Forms.Label();
             this.cmbRunType = new System.Windows.Forms.ComboBox();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.dtpToDate = new System.Windows.Forms.DateTimePicker();
             this.lblDateTo = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dtpFromDate = new System.Windows.Forms.DateTimePicker();
             this.lblDateFrom = new System.Windows.Forms.Label();
             this.txtUserLoggedIn = new System.Windows.Forms.TextBox();
             this.lblUserLoggedIn = new System.Windows.Forms.Label();
@@ -196,6 +195,7 @@
             // 
             // dgvThongTinChayBo
             // 
+            this.dgvThongTinChayBo.AllowUserToAddRows = false;
             this.dgvThongTinChayBo.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvThongTinChayBo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvThongTinChayBo.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -299,6 +299,7 @@
             this.btnXoa.TabIndex = 20;
             this.btnXoa.Text = "Xóa";
             this.btnXoa.UseVisualStyleBackColor = true;
+            this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
             // 
             // btnHuy
             // 
@@ -395,50 +396,38 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.txtCriteria);
-            this.groupBox1.Controls.Add(this.cmbCriteria);
+            this.groupBox1.Controls.Add(this.btnTimKiem);
             this.groupBox1.Controls.Add(this.lblSearchRunType);
             this.groupBox1.Controls.Add(this.cmbRunType);
-            this.groupBox1.Controls.Add(this.dateTimePicker2);
+            this.groupBox1.Controls.Add(this.dtpToDate);
             this.groupBox1.Controls.Add(this.lblDateTo);
-            this.groupBox1.Controls.Add(this.dateTimePicker1);
+            this.groupBox1.Controls.Add(this.dtpFromDate);
             this.groupBox1.Controls.Add(this.lblDateFrom);
             this.groupBox1.Controls.Add(this.txtUserLoggedIn);
             this.groupBox1.Controls.Add(this.lblUserLoggedIn);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(785, 82);
+            this.groupBox1.Location = new System.Drawing.Point(777, 80);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1451, 192);
+            this.groupBox1.Size = new System.Drawing.Size(1459, 192);
             this.groupBox1.TabIndex = 32;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Tìm kiếm nâng cao";
             // 
-            // txtCriteria
+            // btnTimKiem
             // 
-            this.txtCriteria.Location = new System.Drawing.Point(1122, 120);
-            this.txtCriteria.Name = "txtCriteria";
-            this.txtCriteria.Size = new System.Drawing.Size(243, 47);
-            this.txtCriteria.TabIndex = 40;
-            // 
-            // cmbCriteria
-            // 
-            this.cmbCriteria.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbCriteria.FormattingEnabled = true;
-            this.cmbCriteria.Items.AddRange(new object[] {
-            "Easy",
-            "Tempo",
-            "Interval",
-            "Long"});
-            this.cmbCriteria.Location = new System.Drawing.Point(843, 125);
-            this.cmbCriteria.Name = "cmbCriteria";
-            this.cmbCriteria.Size = new System.Drawing.Size(243, 45);
-            this.cmbCriteria.TabIndex = 39;
+            this.btnTimKiem.Location = new System.Drawing.Point(1196, 32);
+            this.btnTimKiem.Name = "btnTimKiem";
+            this.btnTimKiem.Size = new System.Drawing.Size(240, 135);
+            this.btnTimKiem.TabIndex = 39;
+            this.btnTimKiem.Text = "Tìm kiếm";
+            this.btnTimKiem.UseVisualStyleBackColor = true;
+            this.btnTimKiem.Click += new System.EventHandler(this.btnTimKiem_Click);
             // 
             // lblSearchRunType
             // 
             this.lblSearchRunType.AutoSize = true;
             this.lblSearchRunType.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSearchRunType.Location = new System.Drawing.Point(890, 41);
+            this.lblSearchRunType.Location = new System.Drawing.Point(916, 47);
             this.lblSearchRunType.Name = "lblSearchRunType";
             this.lblSearchRunType.Size = new System.Drawing.Size(166, 37);
             this.lblSearchRunType.TabIndex = 38;
@@ -453,19 +442,19 @@
             "Tempo",
             "Interval",
             "Long"});
-            this.cmbRunType.Location = new System.Drawing.Point(1062, 38);
+            this.cmbRunType.Location = new System.Drawing.Point(884, 118);
             this.cmbRunType.Name = "cmbRunType";
             this.cmbRunType.Size = new System.Drawing.Size(243, 45);
             this.cmbRunType.TabIndex = 37;
             // 
-            // dateTimePicker2
+            // dtpToDate
             // 
-            this.dateTimePicker2.CustomFormat = "dd/MM/yyyy";
-            this.dateTimePicker2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker2.Location = new System.Drawing.Point(524, 120);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(243, 44);
-            this.dateTimePicker2.TabIndex = 36;
+            this.dtpToDate.CustomFormat = "dd/MM/yyyy";
+            this.dtpToDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpToDate.Location = new System.Drawing.Point(524, 120);
+            this.dtpToDate.Name = "dtpToDate";
+            this.dtpToDate.Size = new System.Drawing.Size(243, 44);
+            this.dtpToDate.TabIndex = 36;
             // 
             // lblDateTo
             // 
@@ -477,14 +466,14 @@
             this.lblDateTo.TabIndex = 35;
             this.lblDateTo.Text = "Đến ngày";
             // 
-            // dateTimePicker1
+            // dtpFromDate
             // 
-            this.dateTimePicker1.CustomFormat = "dd/MM/yyyy";
-            this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker1.Location = new System.Drawing.Point(524, 41);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(243, 44);
-            this.dateTimePicker1.TabIndex = 34;
+            this.dtpFromDate.CustomFormat = "dd/MM/yyyy";
+            this.dtpFromDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpFromDate.Location = new System.Drawing.Point(524, 41);
+            this.dtpFromDate.Name = "dtpFromDate";
+            this.dtpFromDate.Size = new System.Drawing.Size(243, 44);
+            this.dtpFromDate.TabIndex = 34;
             // 
             // lblDateFrom
             // 
@@ -621,13 +610,12 @@
         private System.Windows.Forms.Label lblUserLoggedIn;
         private System.Windows.Forms.Label lblSearchRunType;
         private System.Windows.Forms.ComboBox cmbRunType;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.DateTimePicker dtpToDate;
         private System.Windows.Forms.Label lblDateTo;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dtpFromDate;
         private System.Windows.Forms.Label lblDateFrom;
-        private System.Windows.Forms.ComboBox cmbCriteria;
-        private System.Windows.Forms.TextBox txtCriteria;
         private System.Windows.Forms.TextBox txtAllRuns;
         private System.Windows.Forms.Label lblAllRuns;
+        private System.Windows.Forms.Button btnTimKiem;
     }
 }

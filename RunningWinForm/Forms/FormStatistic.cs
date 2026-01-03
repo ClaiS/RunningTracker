@@ -5,6 +5,8 @@ using RunningWinForm.Data.Repositories;
 using RunningWinForm.Forms;
 using RunningWinForm.Models;
 using RunningWinForm.Services;
+using RunningWinForm.Services.DTOs;
+using RunningWinForm.Services.Helpers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -41,7 +43,46 @@ namespace RunningWinForm
             InitializeComponent();
         }
 
-        
+        private string GetDateRangeLabel()
+        {
+            // 1. Lấy các giá trị hiện tại từ ComboBox
+            // Lưu ý: cmbYear load List<int> nên SelectedItem là int
+            string selectedYear = cmbYear.SelectedItem != null ? cmbYear.SelectedItem.ToString() : DateTime.Now.Year.ToString();
+
+            // Lấy giá trị Tháng (ValueMember là int, key 0 là "Cả năm")
+            int selectedMonth = 0;
+            if (cmbMonth.SelectedValue != null)
+            {
+                int.TryParse(cmbMonth.SelectedValue.ToString(), out selectedMonth);
+            }
+
+            // Lấy giá trị Tuần (ValueMember là int, key 0 là "Cả tháng")
+            int selectedWeek = 0;
+            if (cmbWeek.Enabled && cmbWeek.SelectedValue != null)
+            {
+                int.TryParse(cmbWeek.SelectedValue.ToString(), out selectedWeek);
+            }
+
+            // 2. Xử lý Logic hiển thị theo cấp độ
+
+            // TRƯỜNG HỢP 1: XEM CẢ NĂM (Tháng = 0)
+            if (selectedMonth == 0)
+            {
+                return $"BÁO CÁO TỔNG HỢP NĂM {selectedYear}";
+            }
+
+            // TRƯỜNG HỢP 2: XEM CẢ THÁNG (Tháng > 0 và Tuần = 0)
+            else if (selectedWeek == 0)
+            {
+                return $"BÁO CÁO THÁNG {selectedMonth} / {selectedYear}";
+            }
+
+            // TRƯỜNG HỢP 3: XEM CHI TIẾT TUẦN (Tuần > 0)
+            else
+            {
+                return $"BÁO CÁO CHI TIẾT TUẦN {selectedWeek}\n(Tháng {selectedMonth} Năm {selectedYear})";
+            }
+        }
 
         private void btnHuy_Click(object sender, EventArgs e)
         {
@@ -96,7 +137,7 @@ namespace RunningWinForm
 
             // Tạo danh sách tháng: 0 là "Cả năm", 1-12 là tháng
             var months = new Dictionary<int, string>();
-            months.Add(0, "--- Cả năm ---");
+            months.Add(0, "Cả năm");
             for (int i = 1; i <= 12; i++)
             {
                 months.Add(i, "Tháng " + i);
@@ -123,7 +164,7 @@ namespace RunningWinForm
             int selectedMonth = (int)cmbMonth.SelectedValue;
 
             var weeks = new Dictionary<int, string>();
-            weeks.Add(0, "--- Cả tháng ---");
+            weeks.Add(0, "Cả tháng");
 
             // Chỉ nạp danh sách tuần nếu người dùng ĐÃ chọn một tháng cụ thể
             if (selectedMonth > 0)
@@ -308,326 +349,72 @@ namespace RunningWinForm
             chartDistribution.Series = pieSeriesCollection;
             chartDistribution.LegendLocation = LegendLocation.Right;
         }
-
-        //private byte[] ChartToImageGeneral(System.Windows.Forms.Control chartControl)
-        //{
-        //    try
-        //    {
-        //        Bitmap chartBitmap = null;
-
-        //        if (chartControl is LiveCharts.WinForms.CartesianChart cartesianChart)
-        //        {
-        //            // Tắt animation và tooltip
-        //            bool oldAnimation = cartesianChart.DisableAnimations;
-        //            cartesianChart.DisableAnimations = true;
-        //            var oldTooltip = cartesianChart.DataTooltip;
-        //            cartesianChart.DataTooltip = null;
-
-        //            // Force update
-        //            cartesianChart.Update(true, true);
-        //            Application.DoEvents();
-        //            System.Threading.Thread.Sleep(100);
-
-        //            // Tạo bitmap với kích thước mong muốn
-        //            int width = 1600;
-        //            int height = 900;
-
-        //            // Sử dụng phương thức ẩn của LiveCharts để render
-        //            chartBitmap = new Bitmap(width, height);
-        //            using (Graphics g = Graphics.FromImage(chartBitmap))
-        //            {
-        //                g.Clear(Color.White);
-        //                g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-        //                g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
-
-        //                // Vẽ chart lên graphics
-        //                var oldSize = cartesianChart.Size;
-        //                cartesianChart.Size = new Size(width, height);
-        //                cartesianChart.Refresh();
-        //                Application.DoEvents();
-        //                System.Threading.Thread.Sleep(200);
-
-        //                cartesianChart.DrawToBitmap(chartBitmap, new Rectangle(0, 0, width, height));
-        //                cartesianChart.Size = oldSize;
-        //            }
-
-        //            // Restore
-        //            cartesianChart.DisableAnimations = oldAnimation;
-        //            cartesianChart.DataTooltip = oldTooltip;
-        //        }
-        //        else if (chartControl is LiveCharts.WinForms.PieChart pieChart)
-        //        {
-        //            // Tương tự cho PieChart
-        //            bool oldAnimation = pieChart.DisableAnimations;
-        //            pieChart.DisableAnimations = true;
-        //            var oldTooltip = pieChart.DataTooltip;
-        //            pieChart.DataTooltip = null;
-
-        //            pieChart.Update(true, true);
-        //            Application.DoEvents();
-        //            System.Threading.Thread.Sleep(100);
-
-        //            int width = 1600;
-        //            int height = 900;
-
-        //            chartBitmap = new Bitmap(width, height);
-        //            using (Graphics g = Graphics.FromImage(chartBitmap))
-        //            {
-        //                g.Clear(Color.White);
-        //                g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-        //                g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
-
-        //                var oldSize = pieChart.Size;
-        //                pieChart.Size = new Size(width, height);
-        //                pieChart.Refresh();
-        //                Application.DoEvents();
-        //                System.Threading.Thread.Sleep(200);
-
-        //                pieChart.DrawToBitmap(chartBitmap, new Rectangle(0, 0, width, height));
-        //                pieChart.Size = oldSize;
-        //            }
-
-        //            pieChart.DisableAnimations = oldAnimation;
-        //            pieChart.DataTooltip = oldTooltip;
-        //        }
-
-        //        if (chartBitmap != null)
-        //        {
-        //            using (MemoryStream ms = new MemoryStream())
-        //            {
-        //                chartBitmap.Save(ms, ImageFormat.Png);
-        //                chartBitmap.Dispose();
-        //                return ms.ToArray();
-        //            }
-        //        }
-
-        //        return new byte[0];
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        System.Diagnostics.Debug.WriteLine($"Error: {ex.Message}");
-        //        return new byte[0];
-        //    }
-        //}
-
-        private byte[] CaptureCartesianChart(LiveCharts.WinForms.CartesianChart sourceChart)
-        {
-            try
-            {
-                // Tạo chart mới tạm thời
-                var tempChart = new LiveCharts.WinForms.CartesianChart();
-                tempChart.DisableAnimations = true;
-                tempChart.DataTooltip = null;
-                tempChart.Size = new Size(1600, 900);
-                tempChart.BackColor = Color.White;
-
-                // Copy toàn bộ cấu hình từ chart gốc
-                foreach (var series in sourceChart.Series)
-                {
-                    tempChart.Series.Add(series);
-                }
-
-                foreach (var axis in sourceChart.AxisX)
-                {
-                    tempChart.AxisX.Add(axis);
-                }
-
-                foreach (var axis in sourceChart.AxisY)
-                {
-                    tempChart.AxisY.Add(axis);
-                }
-
-                tempChart.LegendLocation = sourceChart.LegendLocation;
-
-                // Tạo form tạm để host chart
-                using (Form tempForm = new Form())
-                {
-                    tempForm.Size = new Size(1650, 950);
-                    tempForm.FormBorderStyle = FormBorderStyle.None;
-                    tempForm.StartPosition = FormStartPosition.Manual;
-                    tempForm.Location = new Point(-10000, -10000); // Ẩn ra ngoài màn hình
-                    tempForm.Controls.Add(tempChart);
-                    tempChart.Dock = DockStyle.Fill;
-
-                    // Show form và force render
-                    tempForm.Show();
-                    tempForm.Refresh();
-                    Application.DoEvents();
-                    System.Threading.Thread.Sleep(500); // Đợi render hoàn toàn
-
-                    // Chụp ảnh
-                    Bitmap bmp = new Bitmap(tempChart.Width, tempChart.Height);
-                    tempChart.DrawToBitmap(bmp, new Rectangle(0, 0, tempChart.Width, tempChart.Height));
-
-                    // Đóng form
-                    tempForm.Hide();
-
-                    // Convert sang byte array
-                    using (MemoryStream ms = new MemoryStream())
-                    {
-                        bmp.Save(ms, ImageFormat.Png);
-                        bmp.Dispose();
-                        return ms.ToArray();
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine($"Error: {ex.Message}");
-                return new byte[0];
-            }
-        }
-
-        private byte[] CapturePieChart(LiveCharts.WinForms.PieChart sourceChart)
-        {
-            try
-            {
-                var tempChart = new LiveCharts.WinForms.PieChart();
-                tempChart.DisableAnimations = true;
-                tempChart.DataTooltip = null;
-                tempChart.Size = new Size(1600, 900);
-                tempChart.BackColor = Color.White;
-
-                // Copy series
-                foreach (var series in sourceChart.Series)
-                {
-                    tempChart.Series.Add(series);
-                }
-
-                tempChart.LegendLocation = sourceChart.LegendLocation;
-
-                using (Form tempForm = new Form())
-                {
-                    tempForm.Size = new Size(1650, 950);
-                    tempForm.FormBorderStyle = FormBorderStyle.None;
-                    tempForm.StartPosition = FormStartPosition.Manual;
-                    tempForm.Location = new Point(-10000, -10000);
-                    tempForm.Controls.Add(tempChart);
-                    tempChart.Dock = DockStyle.Fill;
-
-                    tempForm.Show();
-                    tempForm.Refresh();
-                    Application.DoEvents();
-                    System.Threading.Thread.Sleep(500);
-
-                    Bitmap bmp = new Bitmap(tempChart.Width, tempChart.Height);
-                    tempChart.DrawToBitmap(bmp, new Rectangle(0, 0, tempChart.Width, tempChart.Height));
-
-                    tempForm.Hide();
-
-                    using (MemoryStream ms = new MemoryStream())
-                    {
-                        bmp.Save(ms, ImageFormat.Png);
-                        bmp.Dispose();
-                        return ms.ToArray();
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine($"Error: {ex.Message}");
-                return new byte[0];
-            }
-        }
-
         private void btnPrint_Click(object sender, EventArgs e)
         {
-            // 1. Kiểm tra dữ liệu
-            if (txtTotalRuns.Text == "")
+            if (string.IsNullOrEmpty(txtTotalRuns.Text))
             {
                 MessageBox.Show("Vui lòng xem thống kê trước khi in!");
                 return;
             }
 
             this.Cursor = Cursors.WaitCursor;
-            this.Enabled = false;
 
-            // 2. CHỤP ẢNH BIỂU ĐỒ (QUAN TRỌNG NHẤT)
-            // Lưu lại Tab đang chọn hiện tại để tí nữa trả về cho user đỡ giật mình
-            //var currentTab = tabStatictis.SelectedTab;
-
-            // Khai báo biến chứa ảnh
-            byte[] imgVolume, imgPerformance, imgDistribution;
             try
             {
-                imgVolume = CaptureCartesianChart(chartVolume);
-                imgPerformance = CaptureCartesianChart(chartIntensityAndPerformance);
-                imgDistribution = CapturePieChart(chartDistribution);
+                // Lấy dữ liệu từ Service
+                int year = (int)cmbYear.SelectedItem;
+                int? month = null;
+                int? week = null;
 
-                // Đóng gói dữ liệu
+                if (cmbMonth.SelectedValue != null)
+                {
+                    int m = 0;
+                    int.TryParse(cmbMonth.SelectedValue.ToString(), out m);
+                    if (m > 0) month = m;
+                }
+
+                if (cmbWeek.Enabled && cmbWeek.SelectedValue != null)
+                {
+                    int w = 0;
+                    int.TryParse(cmbWeek.SelectedValue.ToString(), out w);
+                    if (w > 0) week = w;
+                }
+
+                string timeLabel = GetDateRangeLabel();
+
+                var result = _statisticService.GetStatistics(_currentUser.UserID, year, month, week);
+
+                // Tạo DTO cho thông tin tổng quan
                 var printData = new RunningWinForm.Services.DTOs.ReportPrintDTO
                 {
                     UserName = _userServices.GetUserById(_currentUser.UserID).FullName,
                     PrintedDate = DateTime.Now.ToString("dd/MM/yyyy HH:mm"),
+                    DateRange = timeLabel,
                     TotalRuns = txtTotalRuns.Text,
                     TotalDistance = txtTotalDistance.Text,
                     TotalLoad = txtTrainingLoad.Text,
-                    AvgPace = txtAvgPace.Text,
-                    ChartVolumeImage = imgVolume,
-                    ChartPerformanceImage = imgPerformance,
-                    ChartDistributionImage = imgDistribution
+                    AvgPace = txtAvgPace.Text
                 };
-                FormPrint frm = new FormPrint(printData);
+
+                // Mở Form in với 4 tham số
+                FormPrint frm = new FormPrint(
+                    printData,
+                    result.VolumeData,
+                    result.PerformanceData,
+                    result.DistributionData
+                );
+
                 frm.ShowDialog();
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Lỗi khi tạo báo cáo: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Lỗi khi tạo báo cáo:\n\n{ex.Message}\n\n{ex.StackTrace}",
+                    "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
-                this.Enabled = true;
                 this.Cursor = Cursors.Default;
             }
-
-
-            //try
-            //{
-            //    // --- BƯỚC A: Chụp biểu đồ Khối lượng (Tab 1) ---
-            //    // Phải code chuyển sang Tab này thì DrawToBitmap mới hoạt động
-            //    tabStatictis.SelectedTab = tabVolume; // <--- Thay bằng tên TabPage chứa biểu đồ Khối lượng
-            //    Application.DoEvents(); // <--- BẮT BUỘC: Lệnh này ép giao diện vẽ xong mới chạy tiếp
-            //    imgVolume = ChartToImageGeneral(chartVolume);
-            //    //imgVolume = ChartToImageAlternative(chartVolume);
-
-            //    // --- BƯỚC B: Chụp biểu đồ Hiệu suất (Tab 2) ---
-            //    tabStatictis.SelectedTab = tabIntensityAndPerformance; // <--- Thay bằng tên TabPage chứa biểu đồ Hiệu suất
-            //    Application.DoEvents();
-            //    imgPerformance = ChartToImageGeneral(chartIntensityAndPerformance);
-            //    //imgPerformance = ChartToImageAlternative(chartIntensityAndPerformance);
-
-            //    // --- BƯỚC C: Chụp biểu đồ Phân bố (Tab 3) ---
-            //    tabStatictis.SelectedTab = tabDistribution; // <--- Thay bằng tên TabPage chứa biểu đồ Phân bố
-            //    Application.DoEvents();
-            //    imgDistribution = ChartToImageGeneral(chartDistribution);
-            //    //imgDistribution = ChartToImageAlternative(chartDistribution);
-            //}
-            //finally
-            //{
-            //    // Trả lại Tab ban đầu cho người dùng (để họ không thấy bị nhảy tab)
-            //    tabStatictis.SelectedTab = currentTab;
-            //}
-
-            //// 3. Đóng gói dữ liệu vào DTO
-            //var printData = new RunningWinForm.Services.DTOs.ReportPrintDTO
-            //{
-            //    // Text
-            //    UserName = _userServices.GetUserById(_currentUser.UserID).FullName,
-            //    PrintedDate = DateTime.Now.ToString("dd/MM/yyyy HH:mm"),
-
-            //    TotalRuns = txtTotalRuns.Text,
-            //    TotalDistance = txtTotalDistance.Text,
-            //    TotalLoad = txtTrainingLoad.Text,
-            //    AvgPace = txtAvgPace.Text,
-
-            //    // Hình ảnh (Đã chụp thành công ở trên)
-            //    ChartVolumeImage = imgVolume,
-            //    ChartPerformanceImage = imgPerformance,
-            //    ChartDistributionImage = imgDistribution
-            //};
-
-            // 4. Mở Form in
-
         }
     }
 }

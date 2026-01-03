@@ -22,6 +22,8 @@ namespace RunningWinForm
         private readonly bool _isAdminMode;
         private readonly RunSessionServices _runSessionServices;
         private List<RunSession> _runSessions;
+        private int _selectedRunId = 0;
+
 
         public frmRunLog(User currentUser, bool isAdmin = false)
         {
@@ -144,7 +146,6 @@ namespace RunningWinForm
                     int.Parse(cmbPhutPace.SelectedItem.ToString()) * 60 +
                     int.Parse(cmbGiayPace.SelectedItem.ToString());
 
-
                 var session = new RunSession
                 {
                     UserID = _currentUser.UserID,
@@ -177,12 +178,12 @@ namespace RunningWinForm
         {
             try
             {
-                var topRunsResult = _runSessionServices.GetTopRuns(_currentUser, _isAdminMode);
-                txtAllRuns.Text = topRunsResult.TotalRecords.ToString();
-                _runSessions = topRunsResult.Data;
+                // Gọi Service hàm Default
+                var result = _runSessionServices.GetDefaultRuns(_currentUser, _isAdminMode);
+                txtAllRuns.Text = result.TotalRecords.ToString();
+                _runSessions = result.Data;
                 ToGrid(_runSessions);
-
-            }    
+            }
             catch (Exception ex)
             {
                 MessageBox.Show($"Lỗi hệ thống: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -214,7 +215,58 @@ namespace RunningWinForm
 
         private void btnSua_Click(object sender, EventArgs e)
         {
+            if (_selectedRunId == 0)
+            {
+                MessageBox.Show("Vui lòng chọn một dòng để sửa!");
+                return;
+            }
 
+            int.TryParse(cmbGioThoiGian.Text, out int gio);
+            int.TryParse(cmbPhutThoiGian.Text, out int phut);
+            int.TryParse(cmbGiayThoiGian.Text, out int giay);
+
+            int durationSeconds = gio * 3600 + phut * 60 + giay;
+
+            // 2. Xử lý Pace
+            int.TryParse(cmbPhutPace.Text, out int phutPace);
+            int.TryParse(cmbGiayPace.Text, out int giayPace);
+
+            int paceSeconds = phutPace * 60 + giayPace;
+
+            int.TryParse(txtHRTrungBinh.Text, out int avgHR);
+
+            int rpe = 0;
+            int.TryParse(cmbCamNhanNguoiDung.Text, out rpe);
+
+            try
+            {
+                // Bước 1: Gom dữ liệu từ các ô nhập liệu vào DTO
+                var dto = new RunSession
+                {
+                    RunID = _selectedRunId, // Quan trọng: ID để Service biết sửa dòng nào
+                    RunType = cmbBuoiChay.Text,
+                    RunDate = dtpNgayChay.Value.Date,
+                    Duration = durationSeconds,
+                    Pace = paceSeconds,
+                    Terrain = cmbDiaHinh.Text,
+                    RPE = rpe,
+                    AvgHR = avgHR,
+                    Distance = decimal.Parse(txtQuangDuong.Text)
+                };
+
+                // Bước 2: Gọi Service thực hiện Update
+                _runSessionServices.UpdateRun(dto);
+
+                MessageBox.Show("Cập nhật thành công!");
+
+                // Bước 3: Refresh lại Grid để thấy dữ liệu mới
+                ClearInput(); // Xóa trắng các ô nhập
+                LoadData();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi cập nhật: {ex.Message}");
+            }
         }
 
         private void btnHuy_Click(object sender, EventArgs e)
@@ -228,6 +280,7 @@ namespace RunningWinForm
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow selectedSession = dgvThongTinChayBo.Rows[e.RowIndex];
+                int.TryParse(selectedSession.Cells["colID"].Value.ToString(), out _selectedRunId);
                 cmbBuoiChay.Text = selectedSession.Cells["colBuoiChay"].Value.ToString();
                 dtpNgayChay.Value = DateTime.ParseExact(selectedSession.Cells["colNgayChay"].Value.ToString(), "dd/MM/yyyy", null);
                 txtQuangDuong.Text = selectedSession.Cells["colQuangDuong"].Value.ToString();
@@ -237,6 +290,68 @@ namespace RunningWinForm
 
                 TimeFormat.RedoTime(selectedSession.Cells["ColThoiGian"].Value?.ToString(), cmbGioThoiGian, cmbPhutThoiGian, cmbGiayThoiGian);
                 TimeFormat.RedoTime(selectedSession.Cells["ColPaceTB"].Value?.ToString(), null, cmbPhutPace, cmbGiayPace);
+            }
+        }
+
+        private void btnTimKiem_Click(object sender, EventArgs e)
+        {
+            // Validate ngày
+            if (dtpFromDate.Value.Date > dtpToDate.Value.Date)
+            {
+                MessageBox.Show("Ngày bắt đầu không được lớn hơn ngày kết thúc!", "Cảnh báo");
+                return;
+            }
+
+            try
+            {
+                // Lấy tham số từ UI
+                DateTime from = dtpFromDate.Value;
+                DateTime to = dtpToDate.Value;
+                string type = cmbRunType.SelectedItem?.ToString() ?? "Tất cả";
+
+                // Gọi Service hàm Search
+                var result = _runSessionServices.SearchRuns(_currentUser, _isAdminMode, from, to, type);
+
+                // Cập nhật UI
+                txtAllRuns.Text = result.TotalRecords.ToString(); // Số kết quả tìm thấy
+                ToGrid(result.Data);
+
+                // Thông báo
+                if (result.TotalRecords == 0)
+                    MessageBox.Show("Không tìm thấy kết quả nào!", "Thông báo");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi tìm kiếm: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnXoa_Click(object sender, EventArgs e)
+        {
+            if (_selectedRunId == 0)
+            {
+                MessageBox.Show("Vui lòng chọn một dòng để xóa!");
+                return;
+            }
+
+            var confirm = MessageBox.Show("Bạn chắc chắn muốn xóa buổi chạy này?", "Xác nhận", MessageBoxButtons.YesNo);
+            if (confirm == DialogResult.Yes)
+            {
+                try
+                {
+                    // Gọi Service xóa theo ID
+                    _runSessionServices.DeleteRun(_selectedRunId);
+
+                    MessageBox.Show("Đã xóa xong!");
+
+                    // Refresh lại Grid
+                    ClearInput();
+                    LoadData();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Lỗi xóa: {ex.Message}");
+                }
             }
         }
     }

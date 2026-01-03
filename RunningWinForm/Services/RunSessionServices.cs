@@ -22,14 +22,44 @@ namespace RunningWinForm.Services
             _userRepository = userRepository;
         }
 
-        public int LayTongSoBuoiChay()
+        public List<RunSession> Search(User currentUser, DateTime from, DateTime to, string type)
         {
-            return _context.RunSessions.Count();
+            // Logic nghiệp vụ: Xác định xem user này có phải Admin không?
+            bool isAdmin = (currentUser.UserID == 1); // Hoặc logic kiểm tra quyền của bạn
+
+            // Gọi xuống Repository để lấy dữ liệu thô
+            return _runRepository.FindSessions(currentUser.UserID, isAdmin, from, to, type);
         }
 
-        public int LaySoBuoiChayTheoDieuKien(string Username)
+        public void UpdateRun(RunSession newRun)
         {
-            return _context.RunSessions.Count(r => r.User.Username.Contains(Username));
+            // Bước 1: Tìm bài cũ trong DB
+            var existingRun = _runRepository.GetById(newRun.RunID);
+            if (existingRun == null) throw new Exception("Không tìm thấy bài chạy này!");
+
+
+            // Bước 3: Cập nhật dữ liệu mới vào entity
+            existingRun.RunDate = newRun.RunDate;
+            existingRun.RunType = newRun.RunType;
+            existingRun.Distance = newRun.Distance;
+            existingRun.Duration = newRun.Duration ;       // TimeSpan
+            existingRun.Pace = newRun.Pace; // double
+            existingRun.Terrain = newRun.Terrain;
+            existingRun.AvgHR = newRun.AvgHR;
+            existingRun.RPE = newRun.RPE;
+
+
+            // Bước 4: Gọi Repo lưu
+            _runRepository.Update(existingRun);
+        }
+
+        public void DeleteRun(int runId)
+        {
+            // Kiểm tra tồn tại trước khi xóa (để an toàn)
+            var runEntity = _runRepository.GetById(runId);
+            if (runEntity == null) throw new Exception("Dữ liệu không tồn tại hoặc đã bị xóa!");
+
+            _runRepository.Delete(runId);
         }
 
         public void AddRunSession(RunSession session)
@@ -55,21 +85,43 @@ namespace RunningWinForm.Services
 
         public (List<RunSession> Data, int TotalRecords) GetAllRuns(int userId)
         {
-            return _runRepository.GetByUser(userId);
+            return _runRepository.GetRuns(userId);
         }
 
-        public (List<RunSession> Data, int TotalRecords) GetTopRuns(User currentUser, bool isAdmin)
+        public (List<RunSession> Data, int TotalRecords) GetDefaultRuns(User currentUser, bool isAdmin)
+        {
+            // Nếu Admin -> userId = null (xem hết). Nếu User -> xem của chính mình.
+            int? userIdParam = isAdmin ? (int?)null : currentUser.UserID;
+
+            // Gọi Repo: Không truyền ngày/loại, nhưng giới hạn Top 30
+            return _runRepository.GetRuns(
+                userId: userIdParam,
+                fromDate: null,
+                toDate: null,
+                sessionType: null,
+                topCount: 30 // Giới hạn 30 dòng cho nhẹ
+            );
+        }
+
+        public (List<RunSession> Data, int TotalRecords) SearchRuns(User currentUser, bool isAdmin, DateTime from, DateTime to, string type)
         {
             int? userIdParam = isAdmin ? (int?)null : currentUser.UserID;
 
-            return _runRepository.GetByUser(userIdParam, 50);
+            // Gọi Repo: Truyền đầy đủ tham số tìm kiếm, KHÔNG giới hạn số lượng (topCount = null)
+            return _runRepository.GetRuns(
+                userId: userIdParam,
+                fromDate: from,
+                toDate: to,
+                sessionType: type,
+                topCount: null // Tìm kiếm thì muốn xem hết kết quả
+            );
         }
 
         public (List<RunSession> Data, int TotalRecords) SearchRunsByUsername(string username)
         {
             var user = _userRepository.GetUser(username) ?? throw new Exception("Không tìm thấy người dùng này!");
 
-            return _runRepository.GetByUser(user.UserID);
+            return _runRepository.GetRuns(user.UserID);
         }
     }
 }

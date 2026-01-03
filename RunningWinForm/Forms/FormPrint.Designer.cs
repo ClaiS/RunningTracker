@@ -38,7 +38,7 @@
             this.reportViewer1.Name = "reportViewer1";
             this.reportViewer1.ServerReport.BearerToken = null;
             this.reportViewer1.Size = new System.Drawing.Size(1446, 878);
-            this.reportViewer1.TabIndex = 0;
+            this.reportViewer1.TabIndex = 0;            
             // 
             // FormPrint
             // 

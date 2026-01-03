@@ -6,13 +6,6 @@ using System.Threading.Tasks;
 
 namespace RunningWinForm.Services.DTOs
 {
-    public class ChartDataDTO
-    {
-        public string Label { get; set; }
-        public double Value { get; set; }
-        public double? SecondValue { get; set; }
-    }
-
     // 2. DTO cho phần tổng quan
     public class OverviewStatDTO
     {
